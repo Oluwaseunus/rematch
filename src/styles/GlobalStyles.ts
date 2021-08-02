@@ -43,16 +43,19 @@ body {
   }
 }
 
-.root {
-  display: flex;
+body {
   overflow-x: hidden;
-
+  
   &::-webkit-scrollbar {
     display: none;
   }
 
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+#root {
+  display: flex;
 }
 `;
 

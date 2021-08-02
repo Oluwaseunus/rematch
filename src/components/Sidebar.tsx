@@ -2,15 +2,15 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import Header from './Header';
-import Sesan from '../assets/images/Sesan.png';
+import SidebarCard from './SidebarCard';
+import SidebarHeader from './SidebarHeader';
 import Timi from '../assets/images/Timi.png';
+import Sesan from '../assets/images/Sesan.png';
 import Fikayo from '../assets/images/Fikayo.png';
 import SidebarCommunity from './SidebarCommunity';
 import { ReactComponent as UsersIcon } from '../assets/svgs/users-sidebar.svg';
 import { ReactComponent as DashboardIcon } from '../assets/svgs/circlesFour.svg';
 import { ReactComponent as ControllerIcon } from '../assets/svgs/controller.svg';
-import SidebarCard from './SidebarCard';
 
 const StyledAside = styled.aside`
   width: 20%;
@@ -92,7 +92,7 @@ function Sidebar() {
 
   return (
     <StyledAside>
-      <Header />
+      <SidebarHeader />
 
       <div className='routes'>
         <div className='route active'>
