@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import 'normalize.css';
+import './styles/main.scss';
 import Home from './pages/Home';
 import reportWebVitals from './reportWebVitals';
 
 import '@saeris/typeface-beleren-bold';
-import 'normalize.css';
 
 ReactDOM.render(
   <React.StrictMode>

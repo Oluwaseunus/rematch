@@ -1,0 +1,44 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-size: 7px;
+  font-family: Inter, sans-serif;
+
+  @media (min-width: 1425px) {
+    font-size: 7.5px;
+  }
+
+  @media (min-width: 1680px) {
+    font-size: 9px;
+  }
+
+  @media (min-width: 1920px) {
+    font-size: 10px;
+  }
+}
+
+body {
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#root {
+  display: flex;
+}
+
+main {
+  width: 80%;
+}

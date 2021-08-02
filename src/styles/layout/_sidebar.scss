@@ -1,0 +1,190 @@
+aside {
+  width: 20%;
+  height: 100vh;
+  padding: 0 2rem;
+  max-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: white;
+  box-shadow: 6px 0px 18px rgba(0, 0, 0, 0.06);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  .header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1.5rem 0;
+
+    .logo {
+      padding: 2rem 0;
+      font-weight: 700;
+      font-size: 2.4rem;
+      margin-right: 4rem;
+      line-height: 3.6rem;
+      text-transform: uppercase;
+      font-family: 'Beleren Bold';
+    }
+
+    .hamburger {
+      background: url('../../assets/svgs/hamburger.svg') center no-repeat;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  .routes {
+    padding-bottom: 8rem;
+    border-bottom: 1px solid #e3e1e4;
+
+    .route {
+      width: 90%;
+      height: 6.4rem;
+      display: flex;
+      font-weight: 500;
+      font-size: 1.8rem;
+      border-radius: 4rem;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      justify-content: flex-start;
+
+      &:not(:last-child) {
+        margin-bottom: 7px;
+      }
+
+      a {
+        font-family: inherit;
+        text-decoration: none;
+        color: $text-grey;
+      }
+
+      &.active {
+        font-weight: 600;
+        line-height: 2.2rem;
+        letter-spacing: 0.0035rem;
+        background-color: $primary-color;
+
+        a {
+          color: white;
+        }
+      }
+
+      &__icon {
+        width: 3.2rem;
+        height: 3.2rem;
+        margin: 0 1.6rem 0 1.8rem;
+      }
+    }
+  }
+
+  .sidebar-community {
+    padding: 0 3rem;
+    font-size: 1.4rem;
+    margin-bottom: 9rem;
+    color: $text-grey;
+
+    h3 {
+      font-weight: 500;
+      line-height: 1.8rem;
+      margin: 4rem 0 2rem;
+    }
+
+    .community__members {
+      .community__member {
+        display: flex;
+        height: 3.5rem;
+        font-weight: 600;
+        line-height: 2rem;
+        align-items: center;
+
+        &:not(:last-child) {
+          margin-bottom: 1.6rem;
+        }
+
+        &-image {
+          width: 3.2rem;
+          height: 3.2rem;
+          border-radius: 50%;
+          overflow: hidden;
+          position: relative;
+          margin-right: 1.5rem;
+          border: 1px solid $text-purple;
+
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            object-fit: contain;
+            transform: translate(-50%, -50%);
+          }
+        }
+
+        &-name {
+          margin-right: auto;
+        }
+
+        button {
+          border: none;
+          cursor: pointer;
+          background: none;
+          font-weight: 700;
+          font-size: 1.5rem;
+          font-family: inherit;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+
+  .sidebar-card {
+    width: 25.6rem;
+    height: 34.7rem;
+    margin: 0 4.4rem 2rem;
+    position: relative;
+    border-radius: 2.4rem;
+    background: url('../../assets/images/FIFA.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    button {
+      display: flex;
+      position: absolute;
+      align-items: center;
+      font-family: inherit;
+      justify-content: center;
+
+      &.exit {
+        top: 1.6rem;
+        color: white;
+        width: 2.6rem;
+        right: 1.6rem;
+        height: 2.6rem;
+        border-radius: 50%;
+        backdrop-filter: blur(54.3656px);
+        background: rgba(37, 37, 37, 0.78);
+      }
+
+      &.add {
+        right: 50%;
+        border: none;
+        color: white;
+        width: 21rem;
+        bottom: 1.6rem;
+        background: none;
+        font-weight: 600;
+        font-size: 1.8rem;
+        line-height: 2.7rem;
+        padding: 1.2rem 3rem;
+        border-radius: 10rem;
+        transform: translateX(50%);
+        background: $primary-color;
+      }
+    }
+  }
+}

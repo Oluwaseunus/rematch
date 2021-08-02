@@ -1,0 +1,284 @@
+section.dashboard {
+  display: grid;
+  grid-template-columns: 33fr 17fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 10rem;
+
+  .activities {
+    padding: 5.2rem 3.2rem;
+    padding-bottom: 0;
+
+    .history {
+      display: grid;
+      grid-template-columns: 132fr 97fr;
+      grid-template-rows: 1fr;
+      grid-column-gap: 3.2rem;
+      grid-row-gap: 0px;
+
+      .last-played,
+      .score-card {
+        margin-bottom: 8rem;
+      }
+
+      .card {
+        height: 31.1rem;
+        box-shadow: -4px 4px 12px rgba(98, 77, 113, 0.15);
+
+        &__content {
+          display: flex;
+          padding: 4rem 1.6rem;
+          justify-content: space-between;
+
+          &.score-card__content {
+            padding-top: 2.7rem;
+          }
+
+          & + divider {
+            width: 95%;
+          }
+
+          .image {
+            img {
+              width: 15.6rem;
+              height: 19.2rem;
+            }
+          }
+
+          .right {
+            display: flex;
+            margin-left: 3rem;
+            flex-direction: column;
+
+            .details {
+              height: 15rem;
+              display: flex;
+              flex-wrap: wrap;
+
+              .detail {
+                height: 5rem;
+                display: flex;
+                margin-right: 3.2rem;
+                flex-direction: column;
+                justify-content: space-between;
+
+                &__label {
+                  font-size: 1.3rem;
+                  line-height: 2rem;
+                  letter-spacing: 0.35%;
+                  color: $text-grey;
+                }
+
+                &__value {
+                  font-weight: 600;
+                  font-size: 1.6rem;
+                  line-height: 2.4rem;
+                  letter-spacing: 0.35%;
+                }
+              }
+            }
+
+            .play-again {
+              border: none;
+              height: 4rem;
+              color: white;
+              width: 13rem;
+              background: none;
+              font-weight: 500;
+              font-size: 1.6rem;
+              line-height: 2.4rem;
+              font-family: inherit;
+              border-radius: 10rem;
+              font-family: inherit;
+              padding: 0.8rem 2.4rem;
+              background-color: $primary-color;
+            }
+          }
+
+          .table {
+            padding: 0 0.4rem;
+
+            .divider {
+              width: 35rem;
+              margin-bottom: 1.6rem;
+            }
+
+            &__row {
+              display: flex;
+              font-size: 1.5rem;
+              font-weight: 500;
+              align-items: center;
+
+              &:not(:last-child) {
+                margin-bottom: 2.4rem;
+              }
+
+              &-title {
+                margin-right: 20.3rem;
+
+                &:first-of-type {
+                  margin-right: 21.7rem;
+                }
+              }
+
+              &:first-of-type {
+                font-weight: 400;
+                margin-bottom: 1rem;
+                color: $text-grey;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .challenges {
+    padding: 2rem 2.4rem;
+    border-left: 1px solid #e3e1e4;
+
+    h3.title {
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 3.2rem;
+      margin-bottom: 3.3rem;
+      color: $text-purple;
+    }
+
+    .challenge__list {
+      margin-bottom: 6.4rem;
+
+      &.open {
+        h3.title {
+          margin-bottom: 8px;
+        }
+
+        .challenge__list-item {
+          height: 7.3rem;
+
+          &-image {
+            width: 8.5rem;
+            height: 7.3rem;
+          }
+        }
+      }
+
+      &-item {
+        display: flex;
+        width: 36.4rem;
+        height: 9.6rem;
+        overflow: hidden;
+        font-weight: 500;
+        border-radius: 6px;
+        margin-bottom: 2.4rem;
+        border: 1px solid $btn-stroke;
+
+        &-image {
+          left: -1px;
+          width: 8.5rem;
+          height: 9.6rem;
+          position: relative;
+          margin-right: 1.6rem;
+
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+          }
+        }
+
+        &-details {
+          color: $text-purple;
+        }
+
+        &-identifier {
+          height: 4.2rem;
+          margin: 1.4rem 0;
+          margin-right: 3.7rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        &-title {
+          font-size: 1.4rem;
+          line-height: 1.8rem;
+        }
+
+        &-challenger {
+          font-weight: 400;
+          font-size: 1.3rem;
+          line-height: 1.7rem;
+          color: $text-grey;
+
+          &-name {
+            color: $text-purple;
+          }
+        }
+
+        &-time {
+          font-size: 1.4rem;
+          line-height: 1.6rem;
+          color: $accent;
+        }
+
+        &-points {
+          font-size: 1.5rem;
+          margin-top: 2.8rem;
+          line-height: 1.5rem;
+        }
+      }
+    }
+
+    .challenge__filter {
+      display: flex;
+      height: 3.2rem;
+      align-items: center;
+      margin-bottom: 3.2rem;
+      line-height: 1.6rem;
+
+      p {
+        font-size: 1.6rem;
+        margin-right: 19.9rem;
+        color: $text-grey;
+      }
+
+      .select {
+        height: 3.2rem;
+        position: relative;
+
+        &::after {
+          top: 50%;
+          content: '';
+          right: 1.2rem;
+          width: 1.2rem;
+          height: 0.7rem;
+          position: absolute;
+          border-radius: 0.5px;
+          background-size: cover;
+          transform: translateY(-50%);
+          background-image: url(../../assets/svgs/dropdown.svg);
+        }
+
+        select {
+          height: 100%;
+          border: none;
+          min-width: 6.2rem;
+          font-size: 1.4rem;
+          appearance: none;
+          border-radius: 4px;
+          font-family: inherit;
+          padding: 0.8rem 1.5rem;
+          color: $text-purple;
+          background: rgba(203, 196, 210, 0.3);
+        }
+      }
+    }
+  }
+}

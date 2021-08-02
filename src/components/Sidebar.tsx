@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -11,68 +10,6 @@ import SidebarCommunity from './SidebarCommunity';
 import { ReactComponent as UsersIcon } from '../assets/svgs/users-sidebar.svg';
 import { ReactComponent as DashboardIcon } from '../assets/svgs/circlesFour.svg';
 import { ReactComponent as ControllerIcon } from '../assets/svgs/controller.svg';
-
-const StyledAside = styled.aside`
-  width: 20%;
-  height: 100vh;
-  padding: 0 2rem;
-  max-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  background-color: white;
-  box-shadow: 6px 0px 18px rgba(0, 0, 0, 0.06);
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  .routes {
-    padding-bottom: 8rem;
-    border-bottom: 1px solid #e3e1e4;
-
-    .route {
-      width: 90%;
-      height: 6.4rem;
-      display: flex;
-      font-weight: 500;
-      font-size: 1.8rem;
-      border-radius: 4rem;
-      align-items: center;
-      padding: 1rem 1.5rem;
-      justify-content: flex-start;
-
-      &:not(:last-child) {
-        margin-bottom: 7px;
-      }
-
-      a {
-        font-family: inherit;
-        text-decoration: none;
-        color: var(--text-grey);
-      }
-
-      &.active {
-        font-weight: 600;
-        line-height: 2.2rem;
-        letter-spacing: 0.0035rem;
-        background-color: var(--primary-color);
-
-        a {
-          color: white;
-        }
-      }
-
-      &__icon {
-        width: 3.2rem;
-        height: 3.2rem;
-        margin: 0 1.6rem 0 1.8rem;
-      }
-    }
-  }
-`;
 
 function Sidebar() {
   const [members, setMembers] = useState<CommunityMember[]>([]);
@@ -91,7 +28,7 @@ function Sidebar() {
   }, []);
 
   return (
-    <StyledAside>
+    <aside>
       <SidebarHeader />
 
       <div className='routes'>
@@ -116,7 +53,7 @@ function Sidebar() {
       <SidebarCommunity members={members} />
 
       <SidebarCard />
-    </StyledAside>
+    </aside>
   );
 }
 
