@@ -1,10 +1,26 @@
-button.secondary {
+button {
   border: none;
-  font-weight: 600;
+  cursor: pointer;
   font-size: 1.6rem;
   line-height: 2.4rem;
   font-family: inherit;
-  color: $primary-color;
-  background-color: white;
-  border-bottom: 1px solid $primary-color;
+
+  &.primary {
+    height: 4rem;
+    color: white;
+    width: 13rem;
+    background: none;
+    font-weight: 500;
+    border-radius: 10rem;
+    padding: 0.8rem 2.4rem;
+    font-family: Inter, sans-serif;
+    background-color: $primary-color;
+  }
+
+  &.secondary {
+    font-weight: 600;
+    color: $primary-color;
+    background-color: white;
+    border-bottom: 1px solid $primary-color;
+  }
 }

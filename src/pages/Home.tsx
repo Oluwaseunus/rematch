@@ -1,19 +1,13 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-import Dashboard from './Dashboard';
-import Sidebar from '../components/Sidebar';
-import Header from '../components/Header';
+import App from './App';
+import Auth from './Auth';
 
 function Home() {
   return (
     <BrowserRouter>
-      <Sidebar />
-      <main>
-        <Header />
-        <Switch>
-          <Route path='/dashboard' component={Dashboard} />
-        </Switch>
-      </main>
+      <Route path='/auth' component={Auth} />
+      <Route path='/app' component={App} />
     </BrowserRouter>
   );
 }

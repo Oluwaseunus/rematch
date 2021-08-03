@@ -53,7 +53,7 @@ export default function DashboardHistory({
                   />
                 ))}
               </div>
-              <button className='play-again'>Play Again</button>
+              <button className='primary'>Play Again</button>
             </div>
           </div>
           <div className='divider'></div>

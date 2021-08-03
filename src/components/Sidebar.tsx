@@ -34,19 +34,19 @@ function Sidebar() {
       <div className='routes'>
         <div className='route active'>
           <DashboardIcon className='route__icon' />
-          <Link to='/dashboard'>Dashboard</Link>
+          <Link to='/app/dashboard'>Dashboard</Link>
         </div>
         <div className='route'>
           <UsersIcon className='route__icon' />
-          <Link to='/community'>Community</Link>
+          <Link to='/app/community'>Community</Link>
         </div>
         <div className='route'>
           <ControllerIcon className='route__icon' />
-          <Link to='/games'>My Games</Link>
+          <Link to='/app/games'>My Games</Link>
         </div>
         <div className='route'>
           <ControllerIcon className='route__icon' />
-          <Link to='/leaderboard'>Leaderboard</Link>
+          <Link to='/app/leaderboard'>Leaderboard</Link>
         </div>
       </div>
 
