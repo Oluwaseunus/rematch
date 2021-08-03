@@ -1,23 +1,24 @@
-import { AuthActions, AuthState } from '../pages/Auth';
+import { RouteComponentProps } from 'react-router-dom';
+import { AuthState } from '../pages/Auth';
 
-interface SignupProps extends Omit<AuthState, 'keepMeLoggedIn'> {
-  setAction: (action: AuthActions) => void;
-}
+interface SignupProps
+  extends Omit<AuthState, 'keepMeLoggedIn'>,
+    RouteComponentProps {}
 
 export default function Signup({
   email,
+  history,
   username,
   lastname,
   password,
   firstname,
-  setAction,
 }: SignupProps) {
   function goToLogin() {
-    setAction(AuthActions.login);
+    history.push('/auth');
   }
 
   return (
-    <div className='authentication__component login'>
+    <div className='authentication__component signup'>
       <div className='authentication__header'>
         <h1 className='authentication__header-title'>Create an Account</h1>
       </div>

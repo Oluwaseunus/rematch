@@ -29,12 +29,6 @@
   color: $text-purple;
   font-family: 'Raleway', Inter, sans-serif;
 
-  // &__component {
-  //   &.login {
-
-  //   }
-  // }
-
   &__horizontal {
     &-group {
       display: flex;
@@ -52,6 +46,15 @@
       font-weight: 700;
       font-size: 3.2rem;
     }
+
+    &-text {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+    }
+  }
+
+  &__component.login &__header-text {
+    margin-bottom: -2rem;
   }
 
   &__form {

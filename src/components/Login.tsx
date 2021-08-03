@@ -1,25 +1,28 @@
-import { AuthActions, AuthState } from '../pages/Auth';
+import { RouteComponentProps } from 'react-router-dom';
+import { AuthState } from '../pages/Auth';
 
-type LoginProps = Pick<
-  AuthState,
-  'username' | 'password' | 'keepMeLoggedIn'
-> & {
-  setAction: (action: AuthActions) => void;
-};
+interface LoginProps
+  extends Pick<AuthState, 'username' | 'password' | 'keepMeLoggedIn'>,
+    RouteComponentProps {}
 
 export default function Login({
+  history,
   username,
   password,
-  setAction,
   keepMeLoggedIn,
 }: LoginProps) {
   function goToSignup() {
-    setAction(AuthActions.signUp);
+    history.push('/auth/signup');
+  }
+
+  function goToReset() {
+    history.push('/auth/reset');
   }
 
   return (
     <div className='authentication__component login'>
       <div className='authentication__header'>
+        <p className='authentication__header-text'>Welcome Back</p>
         <h1 className='authentication__header-title'>Login to PlayRematch</h1>
       </div>
       <form className='authentication__form'>
@@ -36,7 +39,11 @@ export default function Login({
         <div className='authentication__input-group'>
           <label htmlFor='password' className='authentication__input-label'>
             <span>Password</span>
-            <button type='button' className='authentication__nav-button'>
+            <button
+              type='button'
+              onClick={goToReset}
+              className='authentication__nav-button'
+            >
               Forgot Password
             </button>
           </label>
