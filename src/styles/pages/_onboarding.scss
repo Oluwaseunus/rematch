@@ -1,0 +1,121 @@
+$content-padding: 11.5rem;
+
+.onboarding {
+  width: 100vw;
+  min-height: 100vh;
+
+  &__hero {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    margin-bottom: 4rem;
+    align-items: center;
+    padding: $content-padding;
+    font-family: Inter, sans-serif;
+    background: url('../../assets/images/Onboarding\ Hero.png') no-repeat center;
+    background-size: cover;
+
+    &-tagline {
+      font-weight: 500;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      color: $primary-color;
+    }
+
+    &-title {
+      margin: 8px 0;
+      font-weight: 600;
+      font-size: 3.2rem;
+      color: $text-purple;
+    }
+  }
+
+  &__games {
+    padding: 0 $content-padding;
+    font-family: Raleway, Inter, sans-serif;
+  }
+
+  &__filters {
+    height: 5rem;
+    @include flexCenter;
+    margin-bottom: 5.2rem;
+    justify-content: flex-start;
+
+    &-input {
+      width: 90rem;
+      height: 100%;
+      position: relative;
+      @include flexCenter;
+      margin-right: 3.2rem;
+      border-radius: 2.5rem;
+      justify-content: flex-start;
+      background: rgba($neutral-white, 0.5);
+
+      &::before {
+        content: '';
+        left: 2rem;
+        width: 2rem;
+        height: 2rem;
+        position: absolute;
+        background: url('../../assets/svgs/search.svg') no-repeat center;
+        background-size: contain;
+      }
+
+      input {
+        width: 100%;
+        border: none;
+        height: 100%;
+        background: none;
+        font-size: 1.6rem;
+        position: relative;
+        margin-left: 5.8rem;
+        font-family: inherit;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    &-dropdown {
+      @include flexCenter;
+      @include normalText;
+      justify-content: start;
+
+      &-label {
+        margin-right: 5px;
+      }
+
+      .select {
+        height: 3.6rem;
+
+        select {
+          width: 11rem;
+        }
+      }
+    }
+  }
+
+  &__games {
+    &-list {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      grid-column-gap: 24px;
+      grid-row-gap: 24px;
+      margin-bottom: 2.4rem;
+    }
+  }
+
+  .cta {
+    width: 100%;
+    @include flexCenter;
+
+    button {
+      height: 4.4rem;
+      width: 19.5rem;
+      align-self: center;
+      justify-self: center;
+    }
+  }
+}

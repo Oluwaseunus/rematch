@@ -15,6 +15,11 @@ button {
     padding: 0.8rem 2.4rem;
     font-family: Inter, sans-serif;
     background-color: $primary-color;
+
+    &.disabled {
+      cursor: not-allowed;
+      background-color: rgba($primary-color, 0.5);
+    }
   }
 
   &.secondary {

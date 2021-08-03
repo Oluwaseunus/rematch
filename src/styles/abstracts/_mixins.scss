@@ -1,0 +1,12 @@
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin normalText {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  color: $text-purple;
+  font-family: inherit;
+}
