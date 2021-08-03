@@ -18,10 +18,10 @@ function Sidebar() {
   useEffect(() => {
     async function fetchCommunityMembers() {
       setMembers([
-        { _id: '1', name: 'Sesan Okunubi', imgSrc: Sesan },
-        { _id: '2', name: 'Timi Aderinsola', imgSrc: Timi },
-        { _id: '3', name: 'Fikayo Sanni', imgSrc: Fikayo },
-        { _id: '4', name: 'Shalom Owolabi', imgSrc: Sesan },
+        { _id: '1', name: 'Sesan Okunubi', image: Sesan },
+        { _id: '2', name: 'Timi Aderinsola', image: Timi },
+        { _id: '3', name: 'Fikayo Sanni', image: Fikayo },
+        { _id: '4', name: 'Shalom Owolabi', image: Sesan },
       ]);
     }
     fetchCommunityMembers();

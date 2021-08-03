@@ -1,8 +1,8 @@
-export default function CommunityMember({ name, imgSrc }: CommunityMember) {
+export default function CommunityMember({ name, image }: CommunityMember) {
   return (
     <div className='community__member'>
       <div className='community__member-image'>
-        <img src={imgSrc} alt={name} />
+        <img src={image} alt={name} />
       </div>
       <div className='community__member-name'>{name}</div>
       <button>Challenge</button>

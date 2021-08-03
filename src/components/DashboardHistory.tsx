@@ -13,8 +13,8 @@ interface DashboardHistoryProps {
 function Detail({ label, value }: DetailProps) {
   return (
     <div className='detail'>
-      <div className='label'>{label}</div>
-      <div className='value'>{value}</div>
+      <div className='detail__label'>{label}</div>
+      <div className='detail__value'>{value}</div>
     </div>
   );
 }
@@ -28,8 +28,11 @@ function ScoreCardItem({ game, score }: ScoreCard) {
   );
 }
 
-function DashboardHistory({ lastPlayed, scoreCards }: DashboardHistoryProps) {
-  const { title, imgSrc, ...details } = lastPlayed;
+export default function DashboardHistory({
+  lastPlayed,
+  scoreCards,
+}: DashboardHistoryProps) {
+  const { title, image, ...details } = lastPlayed;
 
   return (
     <div className='history'>
@@ -38,7 +41,7 @@ function DashboardHistory({ lastPlayed, scoreCards }: DashboardHistoryProps) {
         <div className='card'>
           <div className='card__content'>
             <div className='image'>
-              <img src={imgSrc} alt={title} />
+              <img src={image} alt={title} />
             </div>
             <div className='right'>
               <div className='details'>
@@ -77,5 +80,3 @@ function DashboardHistory({ lastPlayed, scoreCards }: DashboardHistoryProps) {
     </div>
   );
 }
-
-export default DashboardHistory;

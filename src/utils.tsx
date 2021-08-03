@@ -2,6 +2,10 @@ export const capitalize = (string: string): string => {
   return string[0].toUpperCase() + string.slice(1);
 };
 
+export const formatNumber = (number: number): string => {
+  return (number > 1000 ? (number / 1000).toFixed(1) : number) + 'K';
+};
+
 export const sentencify = (string: string): string => {
   return string
     .split('')
