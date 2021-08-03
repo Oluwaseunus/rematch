@@ -35,6 +35,16 @@
   //   }
   // }
 
+  &__horizontal {
+    &-group {
+      display: flex;
+
+      :not(:last-child) {
+        margin-right: 2.4rem;
+      }
+    }
+  }
+
   &__header {
     margin-bottom: 3.2rem;
 
@@ -49,7 +59,7 @@
 
   &__input {
     &-group {
-      $c: &;
+      flex: 1;
       display: flex;
       font-weight: 300;
       margin-bottom: 2.4rem;
