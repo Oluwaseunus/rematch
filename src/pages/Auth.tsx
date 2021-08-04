@@ -16,12 +16,12 @@ export interface AuthState {
 }
 
 export default function Auth() {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstname, setFirstname] = useState('');
-  const [keepMeLoggedIn, setKeepMeLoggedIn] = useState(false);
+  const [email] = useState('');
+  const [username] = useState('');
+  const [lastname] = useState('');
+  const [password] = useState('');
+  const [firstname] = useState('');
+  const [keepMeLoggedIn] = useState(false);
 
   return (
     <div className='auth-page'>

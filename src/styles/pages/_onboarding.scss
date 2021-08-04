@@ -80,7 +80,7 @@ $content-padding: 11.5rem;
     &-dropdown {
       @include flexCenter;
       @include normalText;
-      justify-content: start;
+      justify-content: flex-start;
 
       &-label {
         margin-right: 5px;
