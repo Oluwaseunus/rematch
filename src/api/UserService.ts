@@ -13,7 +13,6 @@ export default class UserService {
   static async fetchUserWithToken() {
     try {
       const token = localStorage.getItem('token');
-      console.log({ token });
 
       if (token) {
         const response = await this.instance.get<APIResponse<User>>('/users', {
@@ -26,9 +25,9 @@ export default class UserService {
         );
       } else throw new Error('No token');
     } catch (err) {
+      localStorage.removeItem('token');
       if (!window.location.pathname.includes('/auth')) {
-        localStorage.removeItem('token');
-        window.location.href = window.location.origin + '/auth';
+        window.location.href = `${window.location.origin}/auth?redirectTo=${window.location.pathname}`;
       }
     }
   }

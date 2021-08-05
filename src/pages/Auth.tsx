@@ -11,6 +11,7 @@ import {
 import { RootState } from '../store';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
+import { getRedirectUrl } from '../utils';
 import UserService from '../api/UserService';
 import UserActionsCreator from '../store/actions/user';
 import ResetPassword from '../components/ResetPassword';
@@ -22,6 +23,7 @@ export interface AuthState extends SignupRequest {
 
 export default function Auth() {
   const history = useHistory();
+  const redirectUrl = getRedirectUrl();
   const userExists = useSelector((state: RootState) => !!state.user);
 
   const [state, setState] = useState<AuthState>({
@@ -33,7 +35,7 @@ export default function Auth() {
     keepMeLoggedIn: false,
   });
 
-  if (userExists) return <Redirect to='/app/dashboard' />;
+  if (userExists) return <Redirect to={redirectUrl} />;
 
   function updateState(
     key: keyof AuthState,
@@ -59,7 +61,7 @@ export default function Auth() {
     });
 
     UserActionsCreator.authenticate({ user, token });
-    history.push('/app/dashboard');
+    history.push(redirectUrl);
   }
 
   async function handleSignup() {
@@ -74,7 +76,7 @@ export default function Auth() {
     });
 
     UserActionsCreator.authenticate({ user, token });
-    history.push('/app/dashboard');
+    history.push(redirectUrl);
   }
 
   return (

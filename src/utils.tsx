@@ -6,6 +6,11 @@ export const formatNumber = (number: number): string => {
   return (number > 1000 ? (number / 1000).toFixed(1) : number) + 'K';
 };
 
+export const getRedirectUrl = () => {
+  const searchParams = new URLSearchParams(window.location.search);
+  return searchParams.get('redirectTo') || '/app/dahboard';
+};
+
 export const sentencify = (string: string): string => {
   return string
     .split('')

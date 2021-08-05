@@ -16,7 +16,6 @@ function App() {
       const userWithToken = await UserService.fetchUserWithToken();
 
       if (userWithToken) {
-        console.log({ userWithToken });
         UserActionsCreator.authenticate(userWithToken);
       }
 
