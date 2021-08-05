@@ -1,7 +1,9 @@
 import { RouteComponentProps } from 'react-router-dom';
 import { AuthState } from '../pages/Auth';
 
-interface ResetProps extends Pick<AuthState, 'email'>, RouteComponentProps {}
+interface ResetProps extends Pick<AuthState, 'email'>, RouteComponentProps {
+  updateState: UpdateState<AuthState>;
+}
 
 export default function ResetPassword({ email, history }: ResetProps) {
   function goToLogin() {

@@ -1,27 +1,74 @@
 import { useState } from 'react';
-import { Route, Switch, RouteComponentProps } from 'react-router-dom';
+import {
+  Route,
+  Switch,
+  useHistory,
+  RouteComponentProps,
+} from 'react-router-dom';
 
 import Login from '../components/Login';
 import Signup from '../components/Signup';
+import UserService from '../api/UserService';
 import ResetPassword from '../components/ResetPassword';
 import PlayRematch from '../assets/images/PLAYREMATCH.png';
+import UserActionsCreator from '../store/actions/user';
 
-export interface AuthState {
-  email: string;
-  password: string;
-  username: string;
-  firstname: string;
-  lastname: string;
+export interface AuthState extends SignupRequest {
   keepMeLoggedIn: boolean;
 }
 
 export default function Auth() {
-  const [email] = useState('');
-  const [username] = useState('');
-  const [lastname] = useState('');
-  const [password] = useState('');
-  const [firstname] = useState('');
-  const [keepMeLoggedIn] = useState(false);
+  const history = useHistory();
+  const [state, setState] = useState<AuthState>({
+    email: 'christdam55@gmail.com',
+    username: 'christoph',
+    lastName: 'Wuni',
+    password: 'Password@123',
+    firstName: 'Christopher',
+    keepMeLoggedIn: false,
+  });
+
+  function updateState(
+    key: keyof AuthState,
+    value: AuthState[keyof AuthState]
+  ) {
+    setState({
+      ...state,
+      [key]: value,
+    });
+  }
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const { type, name, value, checked } = e.target;
+    updateState(name as keyof AuthState, type === 'checkbox' ? checked : value);
+  }
+
+  async function handleLogin() {
+    const { username, password, keepMeLoggedIn } = state;
+    const { user, token } = await UserService.login({
+      username,
+      password,
+      keepMeLoggedIn,
+    });
+
+    UserActionsCreator.authenticate({ user, token });
+    history.push('/app/dashboard');
+  }
+
+  async function handleSignup() {
+    const { email, username, password, lastName, firstName } = state;
+
+    const { user, token } = await UserService.signup({
+      email,
+      username,
+      password,
+      lastName,
+      firstName,
+    });
+
+    UserActionsCreator.authenticate({ user, token });
+    history.push('/app/dashboard');
+  }
 
   return (
     <div className='auth-page'>
@@ -36,9 +83,9 @@ export default function Auth() {
             render={(props: RouteComponentProps) => (
               <Login
                 {...props}
-                username={username}
-                password={password}
-                keepMeLoggedIn={keepMeLoggedIn}
+                {...state}
+                handleLogin={handleLogin}
+                handleChange={handleChange}
               />
             )}
           />
@@ -47,18 +94,16 @@ export default function Auth() {
             render={(props: RouteComponentProps) => (
               <Signup
                 {...props}
-                email={email}
-                username={username}
-                lastname={lastname}
-                password={password}
-                firstname={firstname}
+                {...state}
+                handleChange={handleChange}
+                handleSignup={handleSignup}
               />
             )}
           />
           <Route
             path='/auth/reset'
             render={(props: RouteComponentProps) => (
-              <ResetPassword {...props} email={email} />
+              <ResetPassword {...props} {...state} updateState={updateState} />
             )}
           />
         </Switch>

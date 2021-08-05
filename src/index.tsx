@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css';
 import './styles/main.scss';
-import Home from './pages/Home';
+import App from './pages';
 import reportWebVitals from './reportWebVitals';
 
 import '@saeris/typeface-beleren-bold';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

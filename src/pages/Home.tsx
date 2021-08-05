@@ -1,17 +1,20 @@
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
-import App from './App';
-import Auth from './Auth';
-import Onboarding from './Onboarding';
+import Dashboard from './Dashboard';
+import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 
-function Home() {
+export default function Home() {
   return (
-    <BrowserRouter>
-      <Route path='/app' component={App} />
-      <Route path='/auth' component={Auth} />
-      <Route path='/onboarding' component={Onboarding} />
-    </BrowserRouter>
+    <>
+      <Sidebar />
+      <main>
+        <Header />
+        <Switch>
+          <Route exact path='/app' component={Dashboard} />
+          <Route path='/app/dashboard' component={Dashboard} />
+        </Switch>
+      </main>
+    </>
   );
 }
-
-export default Home;
