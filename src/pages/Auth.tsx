@@ -1,17 +1,20 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   Route,
   Switch,
+  Redirect,
   useHistory,
   RouteComponentProps,
 } from 'react-router-dom';
 
+import { RootState } from '../store';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
 import UserService from '../api/UserService';
+import UserActionsCreator from '../store/actions/user';
 import ResetPassword from '../components/ResetPassword';
 import PlayRematch from '../assets/images/PLAYREMATCH.png';
-import UserActionsCreator from '../store/actions/user';
 
 export interface AuthState extends SignupRequest {
   keepMeLoggedIn: boolean;
@@ -19,6 +22,8 @@ export interface AuthState extends SignupRequest {
 
 export default function Auth() {
   const history = useHistory();
+  const userExists = useSelector((state: RootState) => !!state.user);
+
   const [state, setState] = useState<AuthState>({
     email: 'christdam55@gmail.com',
     username: 'christoph',
@@ -27,6 +32,8 @@ export default function Auth() {
     firstName: 'Christopher',
     keepMeLoggedIn: false,
   });
+
+  if (userExists) return <Redirect to='/app/dashboard' />;
 
   function updateState(
     key: keyof AuthState,
