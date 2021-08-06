@@ -1,13 +1,25 @@
+import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { AuthState } from '../pages/Auth';
 
 interface ResetProps extends Pick<AuthState, 'email'>, RouteComponentProps {
-  updateState: UpdateState<AuthState>;
+  handleChange: HandleChange;
+  handleResetPassword: Function;
 }
 
-export default function ResetPassword({ email, history }: ResetProps) {
+export default function ResetPassword({
+  email,
+  history,
+  handleChange,
+  handleResetPassword,
+}: ResetProps) {
   function goToLogin() {
     history.push('/auth');
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    handleResetPassword();
   }
 
   return (
@@ -19,7 +31,7 @@ export default function ResetPassword({ email, history }: ResetProps) {
           to you.
         </p>
       </div>
-      <form className='authentication__form'>
+      <form className='authentication__form' onSubmit={handleSubmit}>
         <div className='authentication__input-group'>
           <label htmlFor='email' className='authentication__input-label'>
             <span>Email</span>
@@ -27,6 +39,9 @@ export default function ResetPassword({ email, history }: ResetProps) {
           <input
             id='email'
             type='email'
+            name='email'
+            value={email}
+            onChange={handleChange}
             className='authentication__input-field'
           />
         </div>

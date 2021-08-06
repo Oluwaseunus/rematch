@@ -10,6 +10,11 @@ export default class UserService {
     baseURL: process.env.REACT_APP_USER_SERVICE_URL,
   });
 
+  static async resetPassword(body: ResetPasswordRequest) {
+    const response = await this.instance.post('/password/reset', body);
+    console.log({ response });
+  }
+
   static async fetchUserWithToken() {
     try {
       const token = localStorage.getItem('token');
@@ -26,10 +31,19 @@ export default class UserService {
       } else throw new Error('No token');
     } catch (err) {
       localStorage.removeItem('token');
-      if (!window.location.pathname.includes('/auth')) {
-        window.location.href = `${window.location.origin}/auth?redirectTo=${window.location.pathname}`;
+      const { pathname } = window.location;
+
+      if (pathname.length > 1 && !pathname.includes('/auth')) {
+        window.location.href = `${window.location.origin}/auth?redirectTo=${pathname}`;
       }
     }
+  }
+
+  static async getPasswordResetToken(email: string) {
+    const response = await this.instance.post<APIResponse<null>>(`/token`, {
+      email,
+    });
+    return response.data.message;
   }
 
   static async login(body: LoginRequest): Promise<AuthResponse> {

@@ -79,6 +79,11 @@ export default function Auth() {
     history.push(redirectUrl);
   }
 
+  async function handleResetPassword() {
+    const { email } = state;
+    await UserService.getPasswordResetToken(email);
+  }
+
   return (
     <div className='auth-page'>
       <div className='hero'>
@@ -112,7 +117,12 @@ export default function Auth() {
           <Route
             path='/auth/reset'
             render={(props: RouteComponentProps) => (
-              <ResetPassword {...props} {...state} updateState={updateState} />
+              <ResetPassword
+                {...props}
+                {...state}
+                handleChange={handleChange}
+                handleResetPassword={handleResetPassword}
+              />
             )}
           />
         </Switch>

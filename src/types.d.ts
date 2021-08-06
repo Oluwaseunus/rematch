@@ -1,3 +1,9 @@
+interface APIResponse<T extends any> {
+  data: T;
+  status: string;
+  message: string;
+}
+
 interface AuthResponse {
   user: User;
   token: string;
@@ -45,10 +51,9 @@ interface LoginRequest extends Pick<SignupRequest, 'username' | 'password'> {
   keepMeLoggedIn: boolean;
 }
 
-interface APIResponse<T extends any> {
-  data: T;
-  status: string;
-  message: string;
+interface ResetPasswordRequest {
+  token: string;
+  password: string;
 }
 
 interface ScoreCard {
