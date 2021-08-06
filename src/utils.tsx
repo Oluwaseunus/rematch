@@ -23,3 +23,10 @@ export const sentencify = (string: string): string => {
     })
     .join('');
 };
+
+export const stringLowerCaseIncludes = (
+  stringToCheck: string,
+  testValue: string
+) => {
+  return new RegExp(testValue, 'i').test(stringToCheck);
+};
