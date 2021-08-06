@@ -1,4 +1,30 @@
+import { useEffect, useState } from 'react';
+import GameService from '../api/GameService';
+
 export default function Onboarding() {
+  const [games, setGames] = useState<Game[]>([]);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+
+  useEffect(() => {
+    async function fetchGames() {
+      const games = await GameService.getGames();
+      setGames(games);
+    }
+    fetchGames();
+  }, []);
+
+  function selectGame(id: string) {
+    return function () {
+      const index = selectedIds.findIndex(_id => _id === id);
+
+      if (index !== -1) {
+        setSelectedIds(selectedIds.filter(_id => _id !== id));
+      } else if (index === -1 && selectedIds.length < 2) {
+        setSelectedIds([...selectedIds, id]);
+      }
+    };
+  }
+
   return (
     <div className='onboarding'>
       <div className='onboarding__hero'>
@@ -26,7 +52,25 @@ export default function Onboarding() {
             </div>
           </div>
         </div>
-        <div className='onboarding__games-list'></div>
+        <div className='onboarding__games-list'>
+          {games.map(game => {
+            let className = 'onboarding__game';
+            if (selectedIds.includes(game._id)) {
+              className += ' selected';
+            }
+
+            return (
+              <div
+                key={game._id}
+                className={className}
+                aria-label={game.name}
+                onClick={selectGame(game._id)}
+              >
+                <img src={game.image} alt={game.name} />
+              </div>
+            );
+          })}
+        </div>
         <div className='cta'>
           <button className='primary'>Continue</button>
         </div>

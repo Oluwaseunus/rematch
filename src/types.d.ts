@@ -9,6 +9,11 @@ interface AuthResponse {
   token: string;
 }
 
+interface Category {
+  _id: string;
+  name: string;
+}
+
 interface Challenge {
   gameTitle: string;
 }
@@ -17,6 +22,13 @@ interface CommunityMember {
   _id: string;
   name: string;
   image: string;
+}
+
+interface Game {
+  _id: string;
+  name: string;
+  image: string;
+  categoryId: Category;
 }
 
 interface HandleChange {
