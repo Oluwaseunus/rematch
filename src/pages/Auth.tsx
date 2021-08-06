@@ -27,11 +27,11 @@ export default function Auth() {
   const userExists = useSelector((state: RootState) => !!state.user);
 
   const [state, setState] = useState<AuthState>({
-    email: 'christdam55@gmail.com',
-    username: 'christoph',
-    lastName: 'Wuni',
-    password: 'Password@123',
-    firstName: 'Christopher',
+    email: '',
+    username: '',
+    lastName: '',
+    password: '',
+    firstName: '',
     keepMeLoggedIn: false,
   });
 

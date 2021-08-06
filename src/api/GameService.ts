@@ -7,7 +7,6 @@ export default class GameService {
 
   static async getGames() {
     const response = await this.instance.get<APIResponse<Game[]>>('/games');
-    console.log({ response });
     return response.data.data;
   }
 }
