@@ -15,6 +15,7 @@ import { getRedirectUrl } from '../utils';
 import UserService from '../api/UserService';
 import UserActionsCreator from '../store/actions/user';
 import ResetPassword from '../components/ResetPassword';
+import ForgotPassword from '../components/ForgotPassword';
 import PlayRematch from '../assets/images/PLAYREMATCH.png';
 
 export interface AuthState extends SignupRequest {
@@ -79,7 +80,7 @@ export default function Auth() {
     history.push(redirectUrl);
   }
 
-  async function handleResetPassword() {
+  async function getPasswordToken() {
     const { email } = state;
     await UserService.getPasswordResetToken(email);
   }
@@ -115,13 +116,23 @@ export default function Auth() {
             )}
           />
           <Route
+            path='/auth/forgot'
+            render={(props: RouteComponentProps) => (
+              <ForgotPassword
+                {...props}
+                {...state}
+                handleChange={handleChange}
+                getPasswordToken={getPasswordToken}
+              />
+            )}
+          />
+          <Route
             path='/auth/reset'
             render={(props: RouteComponentProps) => (
               <ResetPassword
                 {...props}
                 {...state}
                 handleChange={handleChange}
-                handleResetPassword={handleResetPassword}
               />
             )}
           />

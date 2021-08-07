@@ -1,9 +1,9 @@
 import { Route, Switch } from 'react-router-dom';
 
 import Dashboard from './Dashboard';
+import Onboarding from './Onboarding';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import Onboarding from './Onboarding';
 
 export default function Home() {
   return (

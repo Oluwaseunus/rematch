@@ -8,7 +8,7 @@ export const formatNumber = (number: number): string => {
 
 export const getRedirectUrl = () => {
   const searchParams = new URLSearchParams(window.location.search);
-  return searchParams.get('redirectTo') || '/app/dahboard';
+  return searchParams.get('redirectTo') || '/app/dashboard';
 };
 
 export const sentencify = (string: string): string => {

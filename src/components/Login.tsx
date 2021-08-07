@@ -21,8 +21,8 @@ export default function Login({
     history.push('/auth/signup');
   }
 
-  function goToReset() {
-    history.push('/auth/reset');
+  function goToForgotPasswordPage() {
+    history.push('/auth/forgot');
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -55,7 +55,7 @@ export default function Login({
             <span>Password</span>
             <button
               type='button'
-              onClick={goToReset}
+              onClick={goToForgotPasswordPage}
               className='authentication__nav-button'
             >
               Forgot Password

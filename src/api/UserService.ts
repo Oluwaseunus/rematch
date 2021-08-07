@@ -12,7 +12,7 @@ export default class UserService {
 
   static async resetPassword(body: ResetPasswordRequest) {
     const response = await this.instance.post('/password/reset', body);
-    console.log({ response });
+    return response.data;
   }
 
   static async fetchUserWithToken() {
