@@ -1,5 +1,6 @@
 import Steam from '../assets/images/steam icon.png';
-import Trophy from '../assets/images/trophy icon.png';
+import Cog from '../assets/svgs/cog.svg';
+import { ReactComponent as Dropdown } from '../assets/svgs/dropdown.svg';
 
 function Header() {
   return (
@@ -12,11 +13,12 @@ function Header() {
         <div className='connect__badges'>
           <div className='connect__badge'>
             <img src={Steam} alt='steam' className='connect__badge-icon' />
-            New Challenge
+            <p className='connect__badge-title'>New Challenge</p>
           </div>
-          <div className='connect__badge standing'>
-            <img src={Trophy} alt='trophy' className='connect__badge-icon' />
-            Position: 5<span>th</span>
+          <div className='connect__badge current'>
+            <img src={Cog} alt='Current Game' className='connect__badge-icon' />
+            <p className='connect__badge-title'>FIFA 21</p>
+            <Dropdown className='connect__badge-dropdown' />
           </div>
         </div>
 

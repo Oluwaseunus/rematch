@@ -80,6 +80,18 @@ header {
       background-color: #ede2f5;
       letter-spacing: -0.16500000655651093px;
 
+      &.current {
+        img {
+          padding: 1rem;
+          border-radius: 50%;
+          background-color: $primary-color;
+        }
+      }
+
+      &-dropdown {
+        margin-left: 0.9rem;
+      }
+
       img {
         margin-right: 1rem;
       }
