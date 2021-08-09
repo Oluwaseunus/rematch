@@ -1,0 +1,31 @@
+.user-profile {
+  @include flexCenter;
+
+  &-image {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+
+    &-wrapper {
+      border: none;
+      margin-right: 2rem;
+
+      &.bordered {
+        width: 7rem;
+        height: 7rem;
+        border-radius: 50%;
+        @include flexCenter;
+        border: 2px solid $accent;
+      }
+    }
+  }
+
+  &-name {
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: $text-purple;
+    line-height: 2.4rem;
+    margin-right: auto;
+    font-family: 'Inter', sans-serif;
+  }
+}

@@ -7,10 +7,12 @@
 
 @import 'components/button';
 @import 'components/select';
+@import 'components/profile';
 
 @import 'layout/header';
 @import 'layout/sidebar';
 
 @import 'pages/auth';
+@import 'pages/community';
 @import 'pages/dashboard';
 @import 'pages/onboarding';

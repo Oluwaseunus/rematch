@@ -1,0 +1,168 @@
+section.community {
+  display: grid;
+  grid-template-columns: 33fr 17fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 100%;
+  min-height: 100vh;
+
+  li {
+    list-style: none;
+  }
+
+  .community__content {
+    padding: 4.8rem 3.2rem;
+
+    h1 {
+      margin-bottom: 4.9rem;
+    }
+  }
+
+  .community__friends {
+    margin-bottom: 6.4rem;
+
+    &-header {
+      display: flex;
+      align-items: center;
+
+      .title {
+        font-size: 2.4rem;
+        margin-right: 51.8rem;
+      }
+    }
+
+    &-actions {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+
+    &-search {
+      display: flex;
+      width: 19.6rem;
+      height: 3.2rem;
+      position: relative;
+      align-items: center;
+      margin-right: 2.6rem;
+      border-radius: 1.8rem;
+      background-color: rgba(203, 196, 210, 0.3);
+
+      input {
+        border: none;
+        background: none;
+        font-size: 1.4rem;
+        margin-left: 3.5rem;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      &::before {
+        top: 50%;
+        left: 10px;
+        content: '';
+        width: 1.5rem;
+        height: 1.5rem;
+        position: absolute;
+        transform: translateY(-50%);
+        background: url('../../assets/svgs/magnifyingGlass.svg') no-repeat
+          center;
+      }
+    }
+
+    &-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem 6rem;
+    }
+
+    &-item {
+      display: flex;
+      width: 42.6rem;
+      height: 9.6rem;
+      align-items: center;
+      padding: 1.8rem 1.5rem;
+      border: 1px solid rgba(128, 117, 137, 0.2);
+
+      &-actions {
+        margin-left: auto;
+      }
+
+      button {
+        padding: 0;
+        width: 12.5rem;
+        height: 3.6rem;
+      }
+    }
+
+    &-add {
+      @include flexCenter;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      border: 2px solid $primary-color;
+    }
+  }
+
+  .community__friend-requests {
+    .title {
+      font-size: 2.4rem;
+      margin-bottom: 2.8rem;
+      margin-right: 51.8rem;
+    }
+
+    &-item {
+      padding: 2.6rem;
+      height: 11.2rem;
+      @include flexCenter;
+      justify-content: flex-start;
+      border-bottom: 1px solid rgba(black, 0.1);
+
+      .user-profile {
+        margin-right: auto;
+      }
+
+      &-actions {
+        @include flexCenter;
+        justify-content: space-between;
+
+        :not(:last-child) {
+          margin-right: 3rem;
+        }
+      }
+    }
+
+    .react-tabs {
+      &__tab {
+        border: none;
+        border-bottom: 0;
+        font-weight: 500;
+        font-size: 1.6rem;
+        color: $text-purple;
+        line-height: 1.8rem;
+        padding-bottom: 1.5rem;
+
+        &--selected {
+          color: $primary-dark;
+          border-bottom: 2px solid $primary-dark;
+        }
+
+        &:not(:last-of-type) {
+          margin-right: 3rem;
+        }
+      }
+    }
+  }
+
+  .community__online {
+    margin-bottom: 4.4rem;
+  }
+
+  .online__friend {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+}

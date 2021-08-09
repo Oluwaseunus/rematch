@@ -45,33 +45,35 @@ aside {
 
     .route {
       width: 90%;
-      height: 6.4rem;
       display: flex;
+      height: 6.4rem;
       font-weight: 500;
       font-size: 1.8rem;
+      color: $text-grey;
       border-radius: 4rem;
       align-items: center;
       padding: 1rem 1.5rem;
+      font-family: inherit;
+      text-decoration: none;
       justify-content: flex-start;
 
       &:not(:last-child) {
         margin-bottom: 7px;
       }
 
-      a {
-        font-family: inherit;
-        text-decoration: none;
-        color: $text-grey;
+      svg path {
+        stroke: #221a28;
       }
 
       &.active {
+        color: white;
         font-weight: 600;
         line-height: 2.2rem;
         letter-spacing: 0.0035rem;
         background-color: $primary-color;
 
-        a {
-          color: white;
+        svg path {
+          stroke: white;
         }
       }
 
@@ -208,4 +210,9 @@ aside {
       }
     }
   }
+}
+
+.right-sidebar {
+  padding: 2rem 2.4rem;
+  border-left: 1px solid #e3e1e4;
 }

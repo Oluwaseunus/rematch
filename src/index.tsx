@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css';
 import './styles/main.scss';
+import 'react-tabs/style/react-tabs.css';
+
 import App from './pages';
 import reportWebVitals from './reportWebVitals';
 

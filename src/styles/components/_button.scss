@@ -5,15 +5,20 @@ button {
   line-height: 2.4rem;
   font-family: inherit;
 
-  &.primary {
+  &.primary,
+  &.tertiary {
     height: 4rem;
-    color: white;
-    width: 13rem;
+    width: fit-content;
+    min-width: 13rem;
     background: none;
     font-weight: 500;
     border-radius: 10rem;
     padding: 0.8rem 2.4rem;
     font-family: Inter, sans-serif;
+  }
+
+  &.primary {
+    color: white;
     background-color: $primary-color;
 
     &.disabled {
@@ -27,5 +32,10 @@ button {
     color: $primary-color;
     background-color: white;
     border-bottom: 1px solid $primary-color;
+  }
+
+  &.tertiary {
+    color: $text-purple;
+    background-color: $text-purple-light;
   }
 }

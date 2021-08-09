@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import SidebarCard from './SidebarCard';
 import SidebarHeader from './SidebarHeader';
@@ -12,22 +12,22 @@ function Sidebar() {
       <SidebarHeader />
 
       <div className='routes'>
-        <div className='route active'>
+        <NavLink to='/app/dashboard' activeClassName='active' className='route'>
           <DashboardIcon className='route__icon' />
-          <Link to='/app/dashboard'>Dashboard</Link>
-        </div>
-        <div className='route'>
+          <p>Dashboard</p>
+        </NavLink>
+        <NavLink to='/app/community' className='route'>
           <UsersIcon className='route__icon' />
-          <Link to='/app/community'>Community</Link>
-        </div>
-        <div className='route'>
+          <p>Community</p>
+        </NavLink>
+        <NavLink to='/app/games' className='route'>
           <ControllerIcon className='route__icon' />
-          <Link to='/app/games'>My Games</Link>
-        </div>
-        <div className='route'>
+          <p>My Games</p>
+        </NavLink>
+        <NavLink to='/app/leaderboard' className='route'>
           <ControllerIcon className='route__icon' />
-          <Link to='/app/leaderboard'>Leaderboard</Link>
-        </div>
+          <p>Leaderboard</p>
+        </NavLink>
       </div>
 
       <SidebarCard />

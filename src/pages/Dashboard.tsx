@@ -98,7 +98,7 @@ function Dashboard() {
   }, []);
 
   return (
-    <section className='dashboard'>
+    <section className='page dashboard'>
       <div className='activities'>
         {lastPlayed?.title ? (
           <DashboardHistory lastPlayed={lastPlayed} scoreCards={scoreCards} />

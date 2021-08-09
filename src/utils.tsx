@@ -6,6 +6,10 @@ export const formatNumber = (number: number): string => {
   return (number > 1000 ? (number / 1000).toFixed(1) : number) + 'K';
 };
 
+export const getFullName = (user: User) => {
+  return user.firstName + ' ' + user.lastName;
+};
+
 export const getRedirectUrl = () => {
   const searchParams = new URLSearchParams(window.location.search);
   return searchParams.get('redirectTo') || '/app/dashboard';

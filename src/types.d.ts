@@ -1,3 +1,5 @@
+interface Activity {}
+
 interface APIResponse<T extends any> {
   data: T;
   status: string;
@@ -29,6 +31,12 @@ interface Game {
   name: string;
   image: string;
   categoryId: Category;
+}
+
+interface FriendRequest extends Array<User> {
+  0: User;
+  1: User;
+  length: 2;
 }
 
 interface HandleChange {

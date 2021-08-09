@@ -3,7 +3,7 @@ import TombRaider from '../assets/images/Tomb Raider.png';
 
 export default function Challenges() {
   return (
-    <div className='challenges'>
+    <div className='challenges right-sidebar'>
       <div className='challenge__list upcoming'>
         <h3 className='title'>Upcoming Challenges</h3>
         <div className='challenge__list-items'>
