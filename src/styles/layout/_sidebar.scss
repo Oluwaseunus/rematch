@@ -3,6 +3,8 @@ aside {
   height: 100vh;
   padding: 0 2rem;
   max-height: 100vh;
+  position: relative;
+  z-index: 1;
   overflow-x: hidden;
   overflow-y: scroll;
   background-color: white;
@@ -40,7 +42,6 @@ aside {
 
   .routes {
     padding-bottom: 8rem;
-    border-bottom: 1px solid #e3e1e4;
 
     .route {
       width: 90%;
@@ -144,46 +145,66 @@ aside {
   .sidebar-card {
     width: 25.6rem;
     height: 34.7rem;
-    margin: 0 4.4rem 2rem;
     position: relative;
+    // z-index: 2;
+    margin: 0 4.4rem 2rem;
     border-radius: 2.4rem;
     background: url('../../assets/images/FIFA.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 
-    button {
-      display: flex;
+    &::after,
+    &::before {
+      top: 50%;
+      left: 50%;
+      z-index: -1;
+      content: '';
+      height: 34.7rem;
       position: absolute;
-      align-items: center;
-      font-family: inherit;
-      justify-content: center;
+      border-radius: 2.4rem;
+    }
 
-      &.exit {
-        top: 1.6rem;
-        color: white;
-        width: 2.6rem;
-        right: 1.6rem;
-        height: 2.6rem;
-        border-radius: 50%;
-        backdrop-filter: blur(54.3656px);
-        background: rgba(37, 37, 37, 0.78);
-      }
+    &::after {
+      width: 24rem;
+      transform: translate(-50%, -47%);
+      background-color: rgba(158, 81, 213, 0.06);
+    }
 
-      &.add {
-        right: 50%;
-        border: none;
-        color: white;
-        width: 21rem;
-        bottom: 1.6rem;
-        background: none;
-        font-weight: 600;
-        font-size: 1.8rem;
-        line-height: 2.7rem;
-        padding: 1.2rem 3rem;
+    &::before {
+      width: 22.4rem;
+      transform: translate(-50%, -45%);
+      background-color: rgba(95, 40, 134, 0.2);
+    }
+
+    button.exit {
+      position: absolute;
+      top: 1.6rem;
+      color: white;
+      width: 2.6rem;
+      right: 1.6rem;
+      height: 2.6rem;
+      border-radius: 50%;
+      @include flexCenter;
+      backdrop-filter: blur(54.3656px);
+      background: rgba(37, 37, 37, 0.78);
+    }
+
+    .progress-bar {
+      left: 4rem;
+      width: 18rem;
+      bottom: 4rem;
+      height: 0.7rem;
+      overflow: hidden;
+      position: absolute;
+      border-radius: 10rem;
+      background-color: $text-purple-light;
+
+      &__completed {
+        background-color: $accent;
+        width: 12rem;
+        height: 100%;
         border-radius: 10rem;
-        transform: translateX(50%);
-        background: $primary-color;
       }
     }
   }

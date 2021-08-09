@@ -6,7 +6,9 @@ const SidebarCard = () => {
       <button className='exit'>
         <CloseButton />
       </button>
-      <button className='add'>Add Game</button>
+      <div className='progress-bar'>
+        <div className='progress-bar__completed'></div>
+      </div>
     </div>
   );
 };

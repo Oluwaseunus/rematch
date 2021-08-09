@@ -42,7 +42,7 @@ export default function Onboarding() {
         <div className='onboarding__hero-text'>
           <p className='onboarding__hero-tagline'>Let's get you started</p>
           <h1 className='onboarding__hero-title'>
-            Select at least one game to get started with
+            Select at most two games to get started with
           </h1>
         </div>
       </div>
