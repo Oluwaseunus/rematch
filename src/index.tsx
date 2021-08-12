@@ -1,13 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import 'normalize.css';
+import React from 'react';
 import './styles/main.scss';
+import ReactDOM from 'react-dom';
+import '@saeris/typeface-beleren-bold';
 import 'react-tabs/style/react-tabs.css';
 
 import App from './pages';
 import reportWebVitals from './reportWebVitals';
-
-import '@saeris/typeface-beleren-bold';
 
 ReactDOM.render(
   <React.StrictMode>

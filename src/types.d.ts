@@ -33,10 +33,12 @@ interface Game {
   categoryId: Category;
 }
 
-interface FriendRequest extends Array<User> {
-  0: User;
-  1: User;
-  length: 2;
+interface FriendRequest {
+  _id: string;
+  user1: User; // sender
+  user2: User; // receiver
+  created: string;
+  status: 'pending' | 'accepted' | 'rejected';
 }
 
 interface HandleChange {

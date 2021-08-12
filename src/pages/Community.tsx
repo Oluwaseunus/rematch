@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
+import Profile from '../components/Profile';
 import Timi from '../assets/images/Timi.png';
+import UserService from '../api/UserService';
 import Fikayo from '../assets/images/Fikayo.png';
 import Fisayo from '../assets/images/Fisayo.png';
-import Profile from '../components/Profile';
 import { ReactComponent as UserPlus } from '../assets/svgs/user-plus.svg';
 
 export default function Community() {
   const [onlineFriends, setOnlineFriends] = useState<User[]>([]);
-  const [sentRequests, setSentRequests] = useState<FriendRequest[]>([]);
   const [communityFriends, setCommunityFriends] = useState<User[]>([]);
+  const [sentRequests, setSentRequests] = useState<FriendRequest[]>([]);
+  const [receivedRequests, setReceivedRequests] = useState<FriendRequest[]>([]);
 
   useEffect(() => {
     async function fetchFriends() {
@@ -118,29 +120,36 @@ export default function Community() {
 
   useEffect(() => {
     async function fetchRequests() {
-      setSentRequests([
-        [
-          {
-            _id: '1',
-            image: Fisayo,
-            email: 'a@b.com',
-            firstName: 'Lewis',
-            username: 'flewis',
-            lastName: 'Hamilton',
-          },
-          {
-            _id: '2',
-            image: Timi,
-            firstName: 'Max',
-            email: 'b@c.com',
-            username: 'tmax',
-            lastName: 'Verstappen',
-          },
-        ],
-      ]);
+      const receivedRequests = await UserService.fetchFriendRequests({
+        type: 'received',
+        status: 'pending',
+      });
+      const sentRequests = await UserService.fetchFriendRequests({
+        type: 'sent',
+        status: 'pending',
+      });
+
+      setSentRequests(sentRequests);
+      setReceivedRequests(receivedRequests);
     }
     fetchRequests();
   }, []);
+
+  function updateRequest(requestId: string, update: 'accept' | 'reject') {
+    return async function () {
+      await UserService.updateFriendRequest(requestId, update);
+      setReceivedRequests(
+        receivedRequests.filter(({ _id }) => _id !== requestId)
+      );
+    };
+  }
+
+  function cancelRequest(requestId: string) {
+    return async function () {
+      await UserService.cancelFriendRequest(requestId);
+      setSentRequests(sentRequests.filter(({ _id }) => _id !== requestId));
+    };
+  }
 
   return (
     <section className='page community'>
@@ -180,31 +189,44 @@ export default function Community() {
               </TabList>
 
               <TabPanel>
-                {/* For received requests, the format is [receipent, sender] */}
-                {sentRequests.map(([user]) => (
+                {receivedRequests.map(({ _id, user1: sender }) => (
                   <li
-                    key={user._id}
+                    key={sender._id}
                     className='community__friend-requests-item'
                   >
-                    <Profile user={user}></Profile>
+                    <Profile user={sender}></Profile>
                     <div className='community__friend-requests-item-actions'>
-                      <button className='primary'>Accept</button>
-                      <button className='tertiary'>Decline</button>
+                      <button
+                        className='primary'
+                        onClick={updateRequest(_id, 'accept')}
+                      >
+                        Accept
+                      </button>
+                      <button
+                        className='tertiary'
+                        onClick={updateRequest(_id, 'reject')}
+                      >
+                        Decline
+                      </button>
                     </div>
                   </li>
                 ))}
               </TabPanel>
               <TabPanel>
-                {/* For sent requests, the format is [sender, recipient] */}
                 <ul className='community__friend-requests-list'>
-                  {sentRequests.map(([, user]) => (
+                  {sentRequests.map(({ _id, user2: recipient }) => (
                     <li
-                      key={user._id}
+                      key={recipient._id}
                       className='community__friend-requests-item'
                     >
-                      <Profile user={user} />
+                      <Profile user={recipient} />
                       <div className='community__friend-requests-item-actions'>
-                        <button className='tertiary'>Cancel Request</button>
+                        <button
+                          className='tertiary'
+                          onClick={cancelRequest(_id)}
+                        >
+                          Cancel Request
+                        </button>
                       </div>
                     </li>
                   ))}
