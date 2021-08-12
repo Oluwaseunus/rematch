@@ -1,4 +1,11 @@
-interface Activity {}
+interface Activity {
+  user: User;
+  actionId: string;
+  timestamp: number;
+  type: 'friend request';
+  status: 'read' | 'unread';
+  action: 'sent' | 'accepted' | 'rejected';
+}
 
 interface APIResponse<T extends any> {
   data: T;

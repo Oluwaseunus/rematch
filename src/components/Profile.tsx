@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 import { getFullName } from '../utils';
 
 interface ProfileProps {
@@ -6,7 +8,9 @@ interface ProfileProps {
 }
 
 export default function Profile({ user, withBorder }: ProfileProps) {
-  const fullname = getFullName(user);
+  const currentUser = useSelector((state: RootState) => state.user!);
+  let fullname = getFullName(user);
+  if (fullname === getFullName(currentUser)) fullname = 'You';
 
   return (
     <div className='user-profile'>

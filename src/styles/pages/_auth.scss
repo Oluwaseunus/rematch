@@ -99,6 +99,10 @@
       font-family: inherit;
       border: 1px solid $border-whisper;
 
+      &:focus {
+        outline: none;
+      }
+
       &[type='checkbox'] {
         margin-right: 13px;
       }

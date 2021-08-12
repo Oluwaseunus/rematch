@@ -3,15 +3,18 @@ import { useState, useEffect } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import { RootState } from '../store';
+import { database } from '../firebase';
 import Profile from '../components/Profile';
 import Timi from '../assets/images/Timi.png';
 import UserService from '../api/UserService';
 import Fikayo from '../assets/images/Fikayo.png';
 import Fisayo from '../assets/images/Fisayo.png';
+import SingleActivity from '../components/SingleActivity';
 import { ReactComponent as UserPlus } from '../assets/svgs/user-plus.svg';
 
 export default function Community() {
   const user = useSelector((state: RootState) => state.user);
+  const [activities, setActivities] = useState<Activity[]>([]);
   const [onlineFriends, setOnlineFriends] = useState<User[]>([]);
   const [communityFriends, setCommunityFriends] = useState<User[]>([]);
   const [sentRequests, setSentRequests] = useState<FriendRequest[]>([]);
@@ -80,6 +83,16 @@ export default function Community() {
     fetchRequests();
   }, []);
 
+  useEffect(() => {
+    const activitiesRef = database.ref(`activity/${user?._id}`);
+    activitiesRef.on('value', snapshot => {
+      const data: Record<string, Activity> = snapshot.val();
+      const notifications = Object.values(data);
+      const unread = notifications.filter(({ status }) => status === 'unread');
+      setActivities(unread);
+    });
+  }, [user]);
+
   function updateRequest(requestId: string, update: 'accept' | 'reject') {
     return async function () {
       await UserService.updateFriendRequest(requestId, update);
@@ -129,8 +142,8 @@ export default function Community() {
           <div className='community__friend-requests-content'>
             <Tabs>
               <TabList>
-                <Tab>Friend Requests (2)</Tab>
-                <Tab>Sent Requests</Tab>
+                <Tab>Friend Requests ({receivedRequests.length})</Tab>
+                <Tab>Sent Requests ({sentRequests.length})</Tab>
               </TabList>
 
               <TabPanel>
@@ -194,7 +207,11 @@ export default function Community() {
         </div>
         <div className='community__activity'>
           <p className='title'>Activities</p>
-          <ul className='activity-list'></ul>
+          <ul className='activity-list'>
+            {activities.map(activity => (
+              <SingleActivity key={activity.timestamp} {...activity} />
+            ))}
+          </ul>
         </div>
       </div>
     </section>
