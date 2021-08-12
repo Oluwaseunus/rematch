@@ -41,6 +41,8 @@ interface FriendRequest {
   status: 'pending' | 'accepted' | 'rejected';
 }
 
+interface Friendship extends Omit<FriendRequest, 'status'> {}
+
 interface HandleChange {
   (e: React.ChangeEvent<HTMLInputElement>): void;
 }

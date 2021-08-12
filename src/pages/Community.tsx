@@ -1,6 +1,8 @@
+import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
+import { RootState } from '../store';
 import Profile from '../components/Profile';
 import Timi from '../assets/images/Timi.png';
 import UserService from '../api/UserService';
@@ -9,6 +11,7 @@ import Fisayo from '../assets/images/Fisayo.png';
 import { ReactComponent as UserPlus } from '../assets/svgs/user-plus.svg';
 
 export default function Community() {
+  const user = useSelector((state: RootState) => state.user);
   const [onlineFriends, setOnlineFriends] = useState<User[]>([]);
   const [communityFriends, setCommunityFriends] = useState<User[]>([]);
   const [sentRequests, setSentRequests] = useState<FriendRequest[]>([]);
@@ -48,75 +51,17 @@ export default function Community() {
 
   useEffect(() => {
     async function fetchFriends() {
-      setCommunityFriends([
-        {
-          _id: '1',
-          image: Fisayo,
-          email: 'a@b.com',
-          firstName: 'Lewis',
-          username: 'flewis',
-          lastName: 'Hamilton',
-        },
-        {
-          _id: '2',
-          image: Timi,
-          firstName: 'Max',
-          email: 'b@c.com',
-          username: 'tmax',
-          lastName: 'Verstappen',
-        },
-        {
-          _id: '3',
-          image: Fisayo,
-          email: 'a@b.com',
-          firstName: 'Lewis',
-          username: 'flewis',
-          lastName: 'Hamilton',
-        },
-        {
-          _id: '4',
-          image: Timi,
-          firstName: 'Max',
-          email: 'b@c.com',
-          username: 'tmax',
-          lastName: 'Verstappen',
-        },
-        {
-          _id: '5',
-          image: Fisayo,
-          email: 'a@b.com',
-          firstName: 'Lewis',
-          username: 'flewis',
-          lastName: 'Hamilton',
-        },
-        {
-          _id: '6',
-          image: Timi,
-          firstName: 'Max',
-          email: 'b@c.com',
-          username: 'tmax',
-          lastName: 'Verstappen',
-        },
-        {
-          _id: '7',
-          image: Fisayo,
-          email: 'a@b.com',
-          firstName: 'Lewis',
-          username: 'flewis',
-          lastName: 'Hamilton',
-        },
-        {
-          _id: '8',
-          image: Timi,
-          firstName: 'Max',
-          email: 'b@c.com',
-          username: 'tmax',
-          lastName: 'Verstappen',
-        },
-      ]);
+      const friendsList = await UserService.fetchFriends();
+
+      setCommunityFriends(
+        // remove the current user from the array of friends.
+        friendsList.map(
+          friends => friends.filter(({ _id }) => _id !== user?._id)[0]
+        )
+      );
     }
     fetchFriends();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     async function fetchRequests() {

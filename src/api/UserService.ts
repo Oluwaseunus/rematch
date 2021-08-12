@@ -28,6 +28,21 @@ export default class UserService {
     }
   }
 
+  static async fetchFriends(): Promise<[User, User][]> {
+    try {
+      const response = await this.instance.get<APIResponse<Friendship[]>>(
+        '/friends',
+        {
+          headers: getHeaders(),
+        }
+      );
+      return response.data.data.map(({ user1, user2 }) => [user1, user2]);
+    } catch (err) {
+      catchWrapper(err);
+      return [];
+    }
+  }
+
   static async fetchFriendRequests({
     type,
     status,
