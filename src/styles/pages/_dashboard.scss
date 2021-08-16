@@ -54,27 +54,43 @@ section.dashboard {
 
             .details {
               height: 15rem;
-              display: flex;
-              flex-wrap: wrap;
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              grid-template-rows: repeat(2, 1fr);
+              grid-row-gap: 6rem;
 
               .detail {
                 height: 5rem;
                 display: flex;
+                align-items: center;
                 margin-right: 3.2rem;
-                flex-direction: column;
-                justify-content: space-between;
+
+                &__icon {
+                  width: 5rem;
+                  height: 5rem;
+                  border-radius: 50%;
+                  @include flexCenter;
+                  margin-right: 1.8rem;
+
+                  &.trophy {
+                    background-color: rgba(101, 36, 148, 0.2);
+                  }
+
+                  &.flag {
+                    background-color: rgba(136, 213, 81, 0.2);
+                  }
+                }
 
                 &__label {
-                  font-size: 1.3rem;
-                  line-height: 2rem;
-                  letter-spacing: 0.35%;
+                  font-weight: 600;
                   color: $text-grey;
+                  line-height: 1.8rem;
+                  text-transform: uppercase;
                 }
 
                 &__value {
-                  font-weight: 600;
-                  font-size: 1.6rem;
-                  line-height: 2.4rem;
+                  font-weight: 700;
+                  font-size: 2.4rem;
                   letter-spacing: 0.35%;
                 }
               }

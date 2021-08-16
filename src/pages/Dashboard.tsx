@@ -15,14 +15,12 @@ function Dashboard() {
   useEffect(() => {
     async function fetchLastPlayed() {
       setLastPlayed({
-        level: 4,
-        played: 20,
-        points: 120,
+        level: 8,
+        points: 469,
         title: 'FIFA',
         image: FIFA2,
-        ranking: '3rd',
-        winRatio: '4:1',
-        percentage: '23%',
+        ranking: '2nd',
+        percentage: '69%',
       });
     }
     fetchLastPlayed();

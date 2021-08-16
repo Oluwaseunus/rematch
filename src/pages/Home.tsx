@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 
+import Games from './Games';
 import Community from './Community';
 import Dashboard from './Dashboard';
 import Onboarding from './Onboarding';
@@ -16,6 +17,8 @@ export default function Home() {
           <Header />
           <Switch>
             <Route exact path='/app' component={Dashboard} />
+
+            <Route path='/app/games' component={Games} />
             <Route path='/app/community' component={Community} />
             <Route path='/app/dashboard' component={Dashboard} />
           </Switch>

@@ -1,22 +1,9 @@
-import { capitalize, sentencify } from '../utils';
-
-interface DetailProps {
-  label: string;
-  value: string;
-}
+import FlagIcon from '../assets/svgs/flag.svg';
+import TrophyIcon from '../assets/svgs/trophy.svg';
 
 interface DashboardHistoryProps {
   lastPlayed: LastPlayed;
   scoreCards: ScoreCard[];
-}
-
-function Detail({ label, value }: DetailProps) {
-  return (
-    <div className='detail'>
-      <div className='detail__label'>{label}</div>
-      <div className='detail__value'>{value}</div>
-    </div>
-  );
 }
 
 function ScoreCardItem({ game, score }: ScoreCard) {
@@ -45,15 +32,59 @@ export default function DashboardHistory({
             </div>
             <div className='right'>
               <div className='details'>
-                {Object.entries(details).map(([label, value]) => (
-                  <Detail
-                    key={label}
-                    value={value}
-                    label={sentencify(capitalize(label))}
-                  />
-                ))}
+                <div className='detail'>
+                  <div className='detail__icon trophy'>
+                    <img
+                      alt='Level'
+                      src={TrophyIcon}
+                      className='detail__icon-image'
+                    />
+                  </div>
+                  <div className='detail__content'>
+                    <div className='detail__value'>{details.level}</div>
+                    <div className='detail__label'>Level</div>
+                  </div>
+                </div>
+                <div className='detail'>
+                  <div className='detail__icon trophy'>
+                    <img
+                      alt='Rank'
+                      src={TrophyIcon}
+                      className='detail__icon-image'
+                    />
+                  </div>
+                  <div className='detail__content'>
+                    <div className='detail__value'>{details.ranking}</div>
+                    <div className='detail__label'>Rank</div>
+                  </div>
+                </div>
+                <div className='detail'>
+                  <div className='detail__icon flag'>
+                    <img
+                      alt='Points'
+                      src={FlagIcon}
+                      className='detail__icon-image'
+                    />
+                  </div>
+                  <div className='detail__content'>
+                    <div className='detail__value'>{details.points}</div>
+                    <div className='detail__label'>Points</div>
+                  </div>
+                </div>
+                <div className='detail'>
+                  <div className='detail__icon flag'>
+                    <img
+                      alt='Win %'
+                      src={FlagIcon}
+                      className='detail__icon-image'
+                    />
+                  </div>
+                  <div className='detail__content'>
+                    <div className='detail__value'>{details.percentage}</div>
+                    <div className='detail__label'>Win %</div>
+                  </div>
+                </div>
               </div>
-              <button className='primary'>Play Again</button>
             </div>
           </div>
           <div className='divider'></div>

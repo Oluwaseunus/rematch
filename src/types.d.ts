@@ -59,9 +59,7 @@ interface LastPlayed {
   title: string;
   level: number;
   points: number;
-  played: number;
   ranking: string;
-  winRatio: string;
   percentage: string;
 }
 
@@ -111,6 +109,11 @@ interface User {
   lastName: string;
   username: string;
   firstName: string;
+}
+
+interface UserGame {
+  game: Game;
+  user: User;
 }
 
 interface UserWithToken extends User {
