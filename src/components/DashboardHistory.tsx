@@ -1,4 +1,5 @@
 import FlagIcon from '../assets/svgs/flag.svg';
+import Fikayo from '../assets/images/Fikayo.png';
 import TrophyIcon from '../assets/svgs/trophy.svg';
 
 interface DashboardHistoryProps {
@@ -6,24 +7,14 @@ interface DashboardHistoryProps {
   scoreCards: ScoreCard[];
 }
 
-function ScoreCardItem({ game, score }: ScoreCard) {
-  return (
-    <div className='table__row'>
-      <div className='table__row-title'>{game}</div>
-      <div className='table__row-value'>{score}</div>
-    </div>
-  );
-}
-
 export default function DashboardHistory({
   lastPlayed,
-  scoreCards,
 }: DashboardHistoryProps) {
   const { title, image, ...details } = lastPlayed;
 
   return (
     <div className='history'>
-      <div className='last-played'>
+      <div className='history-card'>
         <div className='card'>
           <div className='card__content'>
             <div className='image'>
@@ -92,16 +83,43 @@ export default function DashboardHistory({
       <div className='score-card'>
         <div className='card'>
           <div className='card__content score-card__content'>
-            <div className='table'>
-              <div className='table__row'>
-                <div className='table__row-title'>Game</div>
-                <div className='table__row-value'>Score</div>
+            <div className='last__played'>Last Played</div>
+            <div className='last__played-participants__scores'>
+              <div className='last__played-participant'>
+                <div className='last__played-participant-profile'>
+                  <div className='last__played-participant-image-wrapper winner'>
+                    <img
+                      src={Fikayo}
+                      alt='Fikayo'
+                      className='last__played-participant-image'
+                    />
+                  </div>
+                  <p className='last__played-participant-username'>@thebizz</p>
+                </div>
               </div>
-              <div className='divider'></div>
-              {scoreCards.map((item, index) => (
-                <ScoreCardItem key={index} {...item} />
-              ))}
-              <div className='divider'></div>
+              <p className='last__played-results'>
+                <span className='winner'>3</span> : <span>1</span>
+              </p>
+              <div className='last__played-participant'>
+                <div className='last__played-participant-profile'>
+                  <div className='last__played-participant-image-wrapper'>
+                    <img
+                      src={Fikayo}
+                      alt='Fikayo'
+                      className='last__played-participant-image'
+                    />
+                  </div>
+                  <p className='last__played-participant-username'>@thebizz</p>
+                </div>
+              </div>
+            </div>
+            <div className='last__played-actions'>
+              <button className='primary'>Play Again</button>
+              <button className='tertiary'>Results</button>
+            </div>
+            <div className='last__played-points'>
+              <p className='last__played-points-title'>Points Change</p>
+              <p className='last__played-points-value'>230</p>
             </div>
           </div>
         </div>
