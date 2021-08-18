@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import GameService from '../api/GameService';
 import { ReactComponent as ChevronRight } from '../assets/svgs/chevronRight.svg';
+import { stringLowerCaseIncludes } from '../utils';
 
 function UserGame({ name, image }: Game) {
   return (
@@ -12,6 +13,7 @@ function UserGame({ name, image }: Game) {
 }
 
 export default function MyGames() {
+  const [search, setSearch] = useState('');
   const [allGames, setAllGames] = useState<Game[]>([]);
   const [userGames, setUserGames] = useState<UserGame[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
@@ -69,13 +71,21 @@ export default function MyGames() {
               </button>
             </div>
             <div className='all__games-search'>
-              <input type='text' name='search' placeholder='Search games' />
+              <input
+                type='text'
+                name='search'
+                value={search}
+                placeholder='Search games'
+                onChange={e => setSearch(e.target.value)}
+              />
             </div>
           </div>
           <ul className='all__games-list'>
-            {allGames.map(game => (
-              <UserGame key={game._id} {...game} />
-            ))}
+            {allGames
+              .filter(game => stringLowerCaseIncludes(game.name, search))
+              .map(game => (
+                <UserGame key={game._id} {...game} />
+              ))}
           </ul>
         </div>
       </div>
