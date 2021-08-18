@@ -24,7 +24,6 @@ export default function DashboardHistory({
   return (
     <div className='history'>
       <div className='last-played'>
-        <p className='title'>Last Played</p>
         <div className='card'>
           <div className='card__content'>
             <div className='image'>
@@ -91,7 +90,6 @@ export default function DashboardHistory({
         </div>
       </div>
       <div className='score-card'>
-        <p className='title'>Score Card - Last {scoreCards.length} Matches</p>
         <div className='card'>
           <div className='card__content score-card__content'>
             <div className='table'>

@@ -10,3 +10,12 @@
   color: $text-purple;
   font-family: inherit;
 }
+
+@mixin hideScrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

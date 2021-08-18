@@ -1,5 +1,7 @@
+import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
+import { RootState } from '../store';
 import COD from '../assets/images/COD.png';
 import FIFA2 from '../assets/images/FIFA-2.png';
 import LiveMatch from '../components/LiveMatch';
@@ -11,6 +13,7 @@ function Dashboard() {
   const [scoreCards, setScoreCards] = useState<ScoreCard[]>([]);
   const [liveMatches, setLiveMatches] = useState<LiveMatch[]>([]);
   const [lastPlayed, setLastPlayed] = useState<LastPlayed | null>(null);
+  const username = useSelector((state: RootState) => state.user!.username);
 
   useEffect(() => {
     async function fetchLastPlayed() {
@@ -98,6 +101,9 @@ function Dashboard() {
   return (
     <section className='page dashboard'>
       <div className='activities'>
+        <p className='title'>
+          Welcome, <span className='user'>@{username}</span>
+        </p>
         {lastPlayed?.title ? (
           <DashboardHistory lastPlayed={lastPlayed} scoreCards={scoreCards} />
         ) : null}

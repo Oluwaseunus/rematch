@@ -11,6 +11,14 @@ section.dashboard {
     padding: 5.2rem 3.2rem;
     padding-bottom: 0;
 
+    p.title {
+      margin-bottom: 2.5rem;
+
+      span.user {
+        color: $text-grey;
+      }
+    }
+
     .history {
       display: grid;
       grid-template-columns: 132fr 97fr;

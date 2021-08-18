@@ -37,7 +37,7 @@ interface Game {
   _id: string;
   name: string;
   image: string;
-  categoryId: Category;
+  category: Category;
 }
 
 interface FriendRequest {
@@ -78,6 +78,12 @@ interface LiveMatchPlayer {
 
 interface LoginRequest extends Pick<SignupRequest, 'username' | 'password'> {
   keepMeLoggedIn: boolean;
+}
+
+interface PaginatedAPIResponse extends APIResponse {
+  page: number;
+  limit: number;
+  length: number;
 }
 
 interface ResetPasswordRequest {
