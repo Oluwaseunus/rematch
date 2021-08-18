@@ -8,14 +8,6 @@ export default class GameService {
 
   static async getGames() {
     const response = await this.instance.get<APIResponse<Game[]>>('/games');
-    const gameData = response.data.data;
-    gameData.map(game => {
-      const list = game.category.name.split(' ');
-      if (list.length > 2) {
-        game.category.name = list.map(word => word[0]).join('');
-      }
-      return game;
-    });
     return response.data.data;
   }
 

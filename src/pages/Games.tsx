@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import GameService from '../api/GameService';
-import { ReactComponent as ChevronRight } from '../assets/svgs/chevronRight.svg';
 import { stringLowerCaseIncludes } from '../utils';
 
 function UserGame({ name, image }: Game) {
@@ -15,6 +14,7 @@ function UserGame({ name, image }: Game) {
 export default function MyGames() {
   const [search, setSearch] = useState('');
   const [allGames, setAllGames] = useState<Game[]>([]);
+  const [activeCategory, setActiveCategory] = useState('');
   const [userGames, setUserGames] = useState<UserGame[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
 
@@ -38,6 +38,23 @@ export default function MyGames() {
     fetchAllGames();
   }, []);
 
+  function generateButtonClassName(category: string): string {
+    let classname = 'all__games-category';
+    if (category === activeCategory) classname += ' selected';
+    return classname;
+  }
+
+  function handleButtonClick(category: string) {
+    return function (e: React.MouseEvent<HTMLButtonElement>) {
+      (e.target as HTMLElement).closest('button')?.scrollIntoView({
+        block: 'center',
+        inline: 'center',
+        behavior: 'smooth',
+      });
+      setActiveCategory(category);
+    };
+  }
+
   return (
     <section className='page games'>
       <div className='games__container'>
@@ -52,23 +69,23 @@ export default function MyGames() {
           <h2 className='title'>All Games</h2>
           <div className='all__games-filters'>
             <div className='all__games-categories'>
-              <button type='button' className='all__games-category selected'>
+              <button
+                type='button'
+                onClick={handleButtonClick('')}
+                className={generateButtonClassName('')}
+              >
                 <span className='all__games-category-text'>All</span>
               </button>
-              {categories.slice(0, 2).map(category => (
+              {categories.map(category => (
                 <button
                   type='button'
                   key={category}
-                  className='all__games-category'
+                  onClick={handleButtonClick(category)}
+                  className={generateButtonClassName(category)}
                 >
                   <span className='all__games-category-text'>{category}</span>
                 </button>
               ))}
-              <button type='button' className='all__games-category'>
-                <span className='all__games-category-text'>
-                  <ChevronRight />
-                </span>
-              </button>
             </div>
             <div className='all__games-search'>
               <input
@@ -82,7 +99,23 @@ export default function MyGames() {
           </div>
           <ul className='all__games-list'>
             {allGames
-              .filter(game => stringLowerCaseIncludes(game.name, search))
+              .filter(game => {
+                // activeCategory will be an empty string when 'all' is selected.
+                // if activeCategory is empty, don't bother checking the values, just return all valid games.
+                // else, check if the game's category is the same as the active category,
+                // and if the game's title/name matches the search string.
+
+                let categoryIsCorrect = true;
+
+                if (activeCategory) {
+                  categoryIsCorrect = activeCategory === game.category.name;
+                }
+
+                return (
+                  categoryIsCorrect &&
+                  stringLowerCaseIncludes(game.name, search)
+                );
+              })
               .map(game => (
                 <UserGame key={game._id} {...game} />
               ))}

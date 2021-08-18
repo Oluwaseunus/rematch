@@ -44,18 +44,19 @@ h2.title {
   }
 
   &-categories {
+    width: 85rem;
     display: flex;
     margin-right: auto;
+    overflow-x: scroll;
+    @include hideScrollbar;
   }
 
   &-category {
-    width: 20.5rem;
     height: 5.6rem;
     background: none;
-    margin-right: 3rem;
     @include flexCenter;
-    padding: 1rem 4.4rem;
     border-radius: 10rem;
+    flex: 0 0 20.5rem;
 
     &.selected {
       background-color: $divider;
@@ -63,10 +64,6 @@ h2.title {
 
     &.selected &-text {
       color: $primary-color;
-    }
-
-    &:last-of-type {
-      margin-left: -10rem;
     }
 
     &-text {
@@ -100,7 +97,7 @@ h2.title {
       border: none;
       height: 100%;
       background: none;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       margin-left: 5rem;
       margin-right: 3rem;
       line-height: 2.1rem;
