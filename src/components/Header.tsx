@@ -47,10 +47,11 @@ function Header() {
         </section>
       </header>
 
-      <NewChallengeModal
-        showModal={showModal}
-        closeModal={() => setShowModal(false)}
-      />
+      {/* rendering this way prevents us from having to reset the modal state
+        by completely removing the modal when it's not needed. */}
+      {showModal ? (
+        <NewChallengeModal showModal closeModal={() => setShowModal(false)} />
+      ) : null}
     </>
   );
 }

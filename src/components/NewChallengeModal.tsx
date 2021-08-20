@@ -5,6 +5,7 @@ import DateTime from 'react-datetime';
 import React, { useState } from 'react';
 import Fikayo from '../assets/images/Fikayo.png';
 import { ReactComponent as CloseIcon } from '../assets/svgs/close.svg';
+import { ReactComponent as VictoryIcon } from '../assets/svgs/victory.svg';
 import { ReactComponent as LeftArrowIcon } from '../assets/svgs/arrowLeft.svg';
 
 interface NewChallengeModalProps {
@@ -244,6 +245,22 @@ export default function NewChallengeModal({
     </>
   );
 
+  const fourthPage = (
+    <div className='new__challenge-created'>
+      <div className='new__challenge-content-victory'>
+        <VictoryIcon />
+      </div>
+      <p className='new__challenge-content-title'>Challenge invite sent</p>
+      <p className='new__challenge-content-info'>
+        Your challenge has been sent to @ashbarklettyliveson. <br />
+        You will be notified once they accept or reject.
+      </p>
+      <button className='primary' onClick={closeModal}>
+        Okay, great!
+      </button>
+    </div>
+  );
+
   return (
     <Modal isOpen={showModal} style={customStyles}>
       <div className='new__challenge'>
@@ -268,7 +285,7 @@ export default function NewChallengeModal({
           </button>
         </div>
         <div className='new__challenge-content'>
-          {[firstPage, secondPage, thirdPage][index - 1]}
+          {[firstPage, secondPage, thirdPage, fourthPage][index - 1]}
         </div>
       </div>
     </Modal>

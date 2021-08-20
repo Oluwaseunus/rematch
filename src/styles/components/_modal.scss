@@ -104,6 +104,19 @@
         }
       }
     }
+
+    &-victory svg {
+      width: 31.3rem;
+      height: 16rem;
+    }
+
+    &-info {
+      font-size: 1.8rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: $text-purple;
+      line-height: 2.65rem;
+    }
   }
 
   &-opponent {
@@ -188,6 +201,12 @@
       line-height: 2rem;
       font-style: italic;
     }
+  }
+
+  &-created {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   button.primary {
