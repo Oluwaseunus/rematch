@@ -27,17 +27,17 @@ export default function ForgotPassword({
   }
 
   return (
-    <div className='authentication__component forgot'>
-      <div className='authentication__header'>
-        <h1 className='authentication__header-title'>Forgot Password</h1>
-        <p className='authentication__header-text'>
+    <div className='form__component forgot'>
+      <div className='form__header'>
+        <h1 className='form__header-title'>Forgot Password</h1>
+        <p className='form__header-text'>
           Please provide your registered email. Reset instructions will be sent
           to you.
         </p>
       </div>
-      <form className='authentication__form' onSubmit={handleSubmit}>
-        <div className='authentication__input-group'>
-          <label htmlFor='email' className='authentication__input-label'>
+      <form className='form__form' onSubmit={handleSubmit}>
+        <div className='form__input-group'>
+          <label htmlFor='email' className='form__input-label'>
             <span>Email</span>
           </label>
           <input
@@ -47,7 +47,7 @@ export default function ForgotPassword({
             name='email'
             value={email}
             onChange={handleChange}
-            className='authentication__input-field'
+            className='form__input-field'
           />
         </div>
 
@@ -55,7 +55,7 @@ export default function ForgotPassword({
           Send Instructions
         </button>
 
-        <div className='authentication__remarks'>
+        <div className='form__remarks'>
           <p>
             <button type='button' className='secondary' onClick={goToLogin}>
               Back to login

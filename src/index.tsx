@@ -4,6 +4,7 @@ import './styles/main.scss';
 import ReactDOM from 'react-dom';
 import '@saeris/typeface-beleren-bold';
 import 'react-tabs/style/react-tabs.css';
+import 'react-datetime/css/react-datetime.css';
 
 import App from './pages';
 import reportWebVitals from './reportWebVitals';

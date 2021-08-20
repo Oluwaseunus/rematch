@@ -26,16 +26,16 @@ export default function ResetPassword({ history }: ResetPasswordProps) {
   }
 
   return (
-    <div className='authentication__component reset'>
-      <div className='authentication__header'>
-        <div className='authentication__header-title'>Reset Password</div>
-        <p className='authentication__header-text'>
+    <div className='form__component reset'>
+      <div className='form__header'>
+        <div className='form__header-title'>Reset Password</div>
+        <p className='form__header-text'>
           Enter the reset code sent to your email and your new password.
         </p>
       </div>
-      <form className='authentication__form' onSubmit={handleSubmit}>
-        <div className='authentication__input-group'>
-          <label htmlFor='token' className='authentication__input-label'>
+      <form className='form__form' onSubmit={handleSubmit}>
+        <div className='form__input-group'>
+          <label htmlFor='token' className='form__input-label'>
             <span>Reset token</span>
           </label>
           <input
@@ -43,14 +43,14 @@ export default function ResetPassword({ history }: ResetPasswordProps) {
             type='text'
             name='token'
             value={token}
-            className='authentication__input-field'
+            className='form__input-field'
             onChange={e => setToken(e.target.value)}
           />
         </div>
 
         <>
-          <div className='authentication__input-group'>
-            <label htmlFor='password' className='authentication__input-label'>
+          <div className='form__input-group'>
+            <label htmlFor='password' className='form__input-label'>
               <span>Password</span>
             </label>
             <input
@@ -58,15 +58,12 @@ export default function ResetPassword({ history }: ResetPasswordProps) {
               type='password'
               value={password}
               name='newPassword'
-              className='authentication__input-field'
+              className='form__input-field'
               onChange={e => setPassword(e.target.value)}
             />
           </div>
-          <div className='authentication__input-group'>
-            <label
-              htmlFor='verifyPassword'
-              className='authentication__input-label'
-            >
+          <div className='form__input-group'>
+            <label htmlFor='verifyPassword' className='form__input-label'>
               <span>Verify Password</span>
             </label>
             <input
@@ -74,7 +71,7 @@ export default function ResetPassword({ history }: ResetPasswordProps) {
               id='verifyPassword'
               name='verifyPassword'
               value={verifyPassword}
-              className='authentication__input-field'
+              className='form__input-field'
               onChange={e => setVerifyPassword(e.target.value)}
             />
           </div>

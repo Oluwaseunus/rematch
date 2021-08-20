@@ -90,7 +90,7 @@ export default function Auth() {
       <div className='hero'>
         <img src={PlayRematch} alt='PlayRematch' />
       </div>
-      <div className='authentication'>
+      <div className='form'>
         <Switch>
           <Route
             exact

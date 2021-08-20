@@ -31,14 +31,14 @@ export default function Login({
   }
 
   return (
-    <div className='authentication__component login'>
-      <div className='authentication__header'>
-        <p className='authentication__header-text'>Welcome Back</p>
-        <h1 className='authentication__header-title'>Login to PlayRematch</h1>
+    <div className='form__component login'>
+      <div className='form__header'>
+        <p className='form__header-text'>Welcome Back</p>
+        <h1 className='form__header-title'>Login to PlayRematch</h1>
       </div>
-      <form className='authentication__form' onSubmit={handleSubmit}>
-        <div className='authentication__input-group'>
-          <label htmlFor='username' className='authentication__input-label'>
+      <form className='form__form' onSubmit={handleSubmit}>
+        <div className='form__input-group'>
+          <label htmlFor='username' className='form__input-label'>
             <span>Username</span>
           </label>
           <input
@@ -47,16 +47,16 @@ export default function Login({
             name='username'
             value={username}
             onChange={handleChange}
-            className='authentication__input-field'
+            className='form__input-field'
           />
         </div>
-        <div className='authentication__input-group'>
-          <label htmlFor='password' className='authentication__input-label'>
+        <div className='form__input-group'>
+          <label htmlFor='password' className='form__input-label'>
             <span>Password</span>
             <button
               type='button'
               onClick={goToForgotPasswordPage}
-              className='authentication__nav-button'
+              className='form__nav-button'
             >
               Forgot Password
             </button>
@@ -67,22 +67,19 @@ export default function Login({
             type='password'
             value={password}
             onChange={handleChange}
-            className='authentication__input-field'
+            className='form__input-field'
           />
         </div>
-        <div className='authentication__input-group row'>
+        <div className='form__input-group row'>
           <input
             type='checkbox'
             id='keepMeLoggedIn'
             name='keepMeLoggedIn'
             onChange={handleChange}
             checked={keepMeLoggedIn}
-            className='authentication__input-field'
+            className='form__input-field'
           />
-          <label
-            htmlFor='keepMeLoggedIn'
-            className='authentication__input-label'
-          >
+          <label htmlFor='keepMeLoggedIn' className='form__input-label'>
             Keep me logged in
           </label>
         </div>
@@ -91,7 +88,7 @@ export default function Login({
           Login
         </button>
 
-        <div className='authentication__remarks'>
+        <div className='form__remarks'>
           <p>
             New user?{' '}
             <button type='button' className='secondary' onClick={goToSignup}>

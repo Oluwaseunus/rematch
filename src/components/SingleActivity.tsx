@@ -1,11 +1,8 @@
-import dayjs from 'dayjs';
+import moment from 'moment';
 import { useSelector } from 'react-redux';
-import relativeTime from 'dayjs/plugin/relativeTime';
 
 import { RootState } from '../store';
 import { getFullName } from '../utils';
-
-dayjs.extend(relativeTime);
 
 export default function SingleActivity({
   type,
@@ -37,7 +34,7 @@ export default function SingleActivity({
           <span className='activity__item-text bold'>{type}.</span>
         </p>
         <span className='activity__item-text-tagline'>
-          {dayjs(timestamp).fromNow()}
+          {moment(timestamp).fromNow()}
         </span>
       </div>
     </li>

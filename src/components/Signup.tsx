@@ -29,14 +29,14 @@ export default function Signup({
   }
 
   return (
-    <div className='authentication__component signup'>
-      <div className='authentication__header'>
-        <h1 className='authentication__header-title'>Create an Account</h1>
+    <div className='form__component signup'>
+      <div className='form__header'>
+        <h1 className='form__header-title'>Create an Account</h1>
       </div>
-      <form className='authentication__form' onSubmit={handleSubmit}>
-        <div className='authentication__horizontal-group'>
-          <div className='authentication__input-group'>
-            <label htmlFor='firstName' className='authentication__input-label'>
+      <form onSubmit={handleSubmit}>
+        <div className='form__horizontal-group'>
+          <div className='form__input-group'>
+            <label htmlFor='firstName' className='form__input-label'>
               <span>Firstname</span>
             </label>
             <input
@@ -46,11 +46,11 @@ export default function Signup({
               name='firstName'
               value={firstName}
               onChange={handleChange}
-              className='authentication__input-field'
+              className='form__input-field'
             />
           </div>
-          <div className='authentication__input-group'>
-            <label htmlFor='lastName' className='authentication__input-label'>
+          <div className='form__input-group'>
+            <label htmlFor='lastName' className='form__input-label'>
               <span>Lastname</span>
             </label>
             <input
@@ -60,12 +60,12 @@ export default function Signup({
               name='lastName'
               value={lastName}
               onChange={handleChange}
-              className='authentication__input-field'
+              className='form__input-field'
             />
           </div>
         </div>
-        <div className='authentication__input-group'>
-          <label htmlFor='username' className='authentication__input-label'>
+        <div className='form__input-group'>
+          <label htmlFor='username' className='form__input-label'>
             <span>Username</span>
           </label>
           <input
@@ -75,11 +75,11 @@ export default function Signup({
             name='username'
             value={username}
             onChange={handleChange}
-            className='authentication__input-field'
+            className='form__input-field'
           />
         </div>
-        <div className='authentication__input-group'>
-          <label htmlFor='email' className='authentication__input-label'>
+        <div className='form__input-group'>
+          <label htmlFor='email' className='form__input-label'>
             <span>Email</span>
           </label>
           <input
@@ -89,11 +89,11 @@ export default function Signup({
             type='email'
             value={email}
             onChange={handleChange}
-            className='authentication__input-field'
+            className='form__input-field'
           />
         </div>
-        <div className='authentication__input-group'>
-          <label htmlFor='password' className='authentication__input-label'>
+        <div className='form__input-group'>
+          <label htmlFor='password' className='form__input-label'>
             <span>Password</span>
           </label>
           <input
@@ -104,7 +104,7 @@ export default function Signup({
             type='password'
             value={password}
             onChange={handleChange}
-            className='authentication__input-field'
+            className='form__input-field'
           />
         </div>
 
@@ -112,7 +112,7 @@ export default function Signup({
           Create Account
         </button>
 
-        <div className='authentication__remarks'>
+        <div className='form__remarks'>
           <p>
             Already a user?{' '}
             <button type='button' className='secondary' onClick={goToLogin}>

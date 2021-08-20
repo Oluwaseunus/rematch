@@ -17,7 +17,7 @@
   background-size: cover;
 }
 
-.authentication {
+.form {
   width: 64rem;
   height: 70.5rem;
   border-radius: 8px;
@@ -33,7 +33,7 @@
     &-group {
       display: flex;
 
-      :not(:last-child) {
+      .form__input-group:not(:last-of-type) {
         margin-right: 2.4rem;
       }
     }
@@ -57,20 +57,31 @@
     margin-bottom: -2rem;
   }
 
-  &__form {
-  }
-
   &__input {
     &-group {
       flex: 1;
       display: flex;
       font-weight: 300;
+      position: relative;
       margin-bottom: 2.4rem;
       flex-direction: column;
 
       &.row {
         flex-direction: row;
         align-items: center;
+      }
+
+      &.date .rdt {
+        &::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          right: 1rem;
+          width: 2.4rem;
+          height: 2.4rem;
+          transform: translateY(-50%);
+          background: url('../../assets/svgs/calendar.svg') no-repeat center;
+        }
       }
     }
 
@@ -105,6 +116,18 @@
 
       &[type='checkbox'] {
         margin-right: 13px;
+      }
+
+      &:not(&[type='checkbox']) {
+        width: 100%;
+      }
+
+      @at-root {
+        select#{&} {
+          &:invalid {
+            color: $text-grey;
+          }
+        }
       }
 
       &::placeholder {
