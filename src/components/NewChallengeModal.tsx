@@ -29,11 +29,35 @@ export default function NewChallengeModal({
 }: NewChallengeModalProps) {
   const [index, setIndex] = useState(2);
   const [opponent, setOpponent] = useState('');
+  const [selected, setSelected] = useState('');
   const [opponentType, setOpponentType] = useState('');
+
+  function handleBackButton() {
+    if (opponentType === 'random') {
+      setIndex(1);
+    } else {
+      setIndex(index - 1);
+    }
+  }
 
   function handleTypeSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setIndex(index + 1);
+    let increment = 1;
+
+    if (opponentType === 'random') {
+      increment++;
+    }
+
+    setIndex(index + increment);
+  }
+
+  function handleOpponentChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setOpponentType(e.target.value);
+  }
+
+  function toggleSelection(id: string) {
+    if (selected === id) setSelected('');
+    else setSelected(id);
   }
 
   const firstPage = (
@@ -45,33 +69,35 @@ export default function NewChallengeModal({
         onSubmit={handleTypeSubmit}
         className='new__challenge-content-radios'
       >
-        <div className='new__challenge-content-radio-group'>
-          <div
-            className='new__challenge-content-radio'
-            onClick={() => setOpponentType('particular')}
-          >
+        <div
+          className='new__challenge-content-radio-group'
+          onClick={() => setOpponentType('particular')}
+        >
+          <div className='new__challenge-content-radio'>
             <input
               required
               type='radio'
               id='particular'
               name='opponentType'
+              onChange={handleOpponentChange}
               checked={opponentType === 'particular'}
             />
-            <span className='checkmark'></span>
+            <div className='checkmark'></div>
           </div>
           <label htmlFor='particular'>A particular opponent</label>
         </div>
 
-        <div className='new__challenge-content-radio-group'>
-          <div
-            className='new__challenge-content-radio'
-            onClick={() => setOpponentType('random')}
-          >
+        <div
+          onClick={() => setOpponentType('random')}
+          className='new__challenge-content-radio-group'
+        >
+          <div className='new__challenge-content-radio'>
             <input
               required
               id='random'
               type='radio'
               name='opponentType'
+              onChange={handleOpponentChange}
               checked={opponentType === 'random'}
             />
             <span className='checkmark'></span>
@@ -99,7 +125,12 @@ export default function NewChallengeModal({
         />
       </div>
       <ul className='new__challenge-opponent-list'>
-        <li className='new__challenge-opponent-item'>
+        <li
+          onClick={() => toggleSelection('id')}
+          className={`new__challenge-opponent-item ${
+            selected === 'id' ? 'selected' : ''
+          }`}
+        >
           <div className='new__challenge-opponent-image'>
             <img src={Fikayo} alt='Fikayo' />
           </div>
@@ -111,6 +142,7 @@ export default function NewChallengeModal({
           </div>
         </li>
       </ul>
+      <button className='primary'>Continue</button>
     </>
   );
 
@@ -121,7 +153,7 @@ export default function NewChallengeModal({
           <div className='new__challenge-header-placeholder'>
             {index > 1 ? (
               <button
-                onClick={() => setIndex(index - 1)}
+                onClick={handleBackButton}
                 className='new__challenge-header-back'
               >
                 <LeftArrowIcon />

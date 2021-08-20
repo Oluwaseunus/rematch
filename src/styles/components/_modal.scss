@@ -55,22 +55,18 @@
       margin-right: 1.8rem;
       border: 2px solid $text-grey;
 
-      &:hover input ~ .checkmark {
-        background-color: #ccc;
-      }
-
       input {
         position: absolute;
         opacity: 0;
         height: 0;
         width: 0;
 
-        &:checked ~ span.checkmark {
+        &:checked ~ .checkmark {
           background-color: $primary-color;
         }
       }
 
-      span.checkmark {
+      .checkmark {
         height: 1.25rem;
         width: 1.25rem;
         border-radius: 50%;
@@ -80,6 +76,10 @@
         display: flex;
         align-items: center;
         margin-bottom: 3.2rem;
+
+        &:hover input:not(:checked) ~ .checkmark {
+          background-color: #ccc;
+        }
 
         &:last-of-type {
           margin-bottom: 5rem;
@@ -117,6 +117,7 @@
       }
 
       input {
+        width: 100%;
         border: none;
         font-size: 1.4rem;
         color: $text-grey;
@@ -127,6 +128,54 @@
           outline: none;
         }
       }
+    }
+
+    &-list {
+      width: 100%;
+      margin-bottom: 2.6rem;
+    }
+
+    &-item {
+      display: flex;
+      height: 7.2rem;
+      cursor: pointer;
+      list-style: none;
+      align-items: center;
+      border-radius: 1.2rem;
+      padding: 1.4rem 1.6rem;
+
+      &.selected {
+        background-color: rgba(143, 146, 161, 0.05);
+      }
+    }
+
+    &-image {
+      width: 3rem;
+      height: 3rem;
+      overflow: hidden;
+      margin-right: 1rem;
+      border-radius: 50%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &-fullname {
+      font-weight: 600;
+      font-size: 1.4rem;
+      line-height: 2.4rem;
+      color: $text-purple;
+    }
+
+    &-username {
+      color: $grey;
+      font-weight: 500;
+      font-size: 1.2rem;
+      line-height: 2rem;
+      font-style: italic;
     }
   }
 
