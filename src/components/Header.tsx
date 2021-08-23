@@ -9,7 +9,7 @@ import { ReactComponent as Dropdown } from '../assets/svgs/dropdown.svg';
 Modal.setAppElement('#root');
 
 function Header() {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>

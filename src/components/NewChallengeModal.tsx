@@ -115,7 +115,7 @@ export default function NewChallengeModal({
               onChange={handleOpponentChange}
               checked={opponentType === 'random'}
             />
-            <span className='checkmark'></span>
+            <div className='checkmark'></div>
           </div>
           <label htmlFor='random'>A random opponent</label>
         </div>
