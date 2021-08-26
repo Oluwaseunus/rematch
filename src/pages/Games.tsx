@@ -57,7 +57,7 @@ export default function MyGames() {
 
   return (
     <section className='page games'>
-      <div className='games__container'>
+      <div className='page__container'>
         <h2 className='title'>My Games</h2>
         <ul className='user__games'>
           {userGames.map(userGame => (

@@ -27,6 +27,9 @@ function Sidebar() {
         <NavLink to='/app/leaderboard' className='route'>
           <ControllerIcon className='route__icon' />
           <p>Leaderboard</p>
+          <div className='leaderboard__route-ranking'>
+            <p>5</p>
+          </div>
         </NavLink>
       </div>
 

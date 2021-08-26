@@ -4,6 +4,7 @@ import Games from './Games';
 import Community from './Community';
 import Dashboard from './Dashboard';
 import Onboarding from './Onboarding';
+import Leaderboard from './Leaderboard';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 
@@ -21,6 +22,7 @@ export default function Home() {
             <Route path='/app/games' component={Games} />
             <Route path='/app/community' component={Community} />
             <Route path='/app/dashboard' component={Dashboard} />
+            <Route path='/app/leaderboard' component={Leaderboard} />
           </Switch>
         </main>
       </Route>

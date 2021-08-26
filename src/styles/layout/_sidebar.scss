@@ -57,6 +57,35 @@ aside {
       text-decoration: none;
       justify-content: flex-start;
 
+      > p {
+        margin-right: auto;
+      }
+
+      .leaderboard__route-ranking {
+        width: 4.7rem;
+        display: flex;
+        height: 2.5rem;
+        padding: 2px 8px;
+        align-items: center;
+        border-radius: 1.6rem;
+        background-color: $primary-dark;
+
+        &::before {
+          content: '';
+          width: 1.4rem;
+          height: 0.9rem;
+          background: url('../../assets/svgs/polygonUp.svg') no-repeat center;
+        }
+
+        p {
+          color: white;
+          font-weight: 700;
+          margin-left: auto;
+          font-size: 1.7rem;
+          line-height: 2.057rem;
+        }
+      }
+
       &:not(:last-child) {
         margin-bottom: 7px;
       }
@@ -74,6 +103,14 @@ aside {
 
         svg path {
           stroke: white;
+        }
+
+        .leaderboard__route-ranking {
+          background-color: white;
+
+          p {
+            color: $primary-dark;
+          }
         }
       }
 
