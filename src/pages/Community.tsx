@@ -9,12 +9,14 @@ import Timi from '../assets/images/Timi.png';
 import UserService from '../api/UserService';
 import Fikayo from '../assets/images/Fikayo.png';
 import Fisayo from '../assets/images/Fisayo.png';
+import InviteModal from '../components/InviteModal';
 import SingleActivity from '../components/SingleActivity';
 import { ReactComponent as UserPlus } from '../assets/svgs/user-plus.svg';
 
 export default function Community() {
   const user = useSelector((state: RootState) => state.user);
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [showInviteModal, setShowInviteModal] = useState(false);
   const [onlineFriends, setOnlineFriends] = useState<User[]>([]);
   const [communityFriends, setCommunityFriends] = useState<User[]>([]);
   const [sentRequests, setSentRequests] = useState<FriendRequest[]>([]);
@@ -119,9 +121,12 @@ export default function Community() {
               <div className='community__friends-search'>
                 <input type='text' placeholder='Search' />
               </div>
-              <div className='community__friends-add'>
+              <button
+                className='community__friends-add'
+                onClick={() => setShowInviteModal(true)}
+              >
                 <UserPlus />
-              </div>
+              </button>
             </div>
           </div>
           <ul className='community__friends-list'>
@@ -214,6 +219,10 @@ export default function Community() {
           </ul>
         </div>
       </div>
+
+      {showInviteModal ? (
+        <InviteModal showModal closeModal={() => setShowInviteModal(false)} />
+      ) : null}
     </section>
   );
 }

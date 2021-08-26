@@ -8,15 +8,10 @@ import { ReactComponent as CloseIcon } from '../assets/svgs/close.svg';
 import { ReactComponent as VictoryIcon } from '../assets/svgs/victory.svg';
 import { ReactComponent as LeftArrowIcon } from '../assets/svgs/arrowLeft.svg';
 
-interface NewChallengeModalProps {
-  showModal: boolean;
-  closeModal: () => void;
-}
-
 export default function NewChallengeModal({
   showModal,
   closeModal,
-}: NewChallengeModalProps) {
+}: ModalProps) {
   const yesterday = moment().subtract(1, 'day');
 
   const [index, setIndex] = useState(1);
@@ -77,9 +72,7 @@ export default function NewChallengeModal({
 
   const firstPage = (
     <>
-      <p className='new__challenge-content-title'>
-        Who would you like to face?
-      </p>
+      <p className='modal-content-title'>Who would you like to face?</p>
       <form
         onSubmit={handleTypeSubmit}
         className='new__challenge-content-radios'
@@ -129,7 +122,7 @@ export default function NewChallengeModal({
 
   const secondPage = (
     <>
-      <p className='new__challenge-content-title'>Choose your opponent</p>
+      <p className='modal-content-title'>Choose your opponent</p>
       <div className='new__challenge-opponent-search'>
         <input
           type='text'
@@ -168,7 +161,7 @@ export default function NewChallengeModal({
 
   const thirdPage = (
     <>
-      <p className='new__challenge-content-title'>Challenge Details</p>
+      <p className='modal-content-title'>Challenge Details</p>
       <form onSubmit={createChallenge}>
         <div className='form__input-group'>
           <label htmlFor='points' className='form__input-label'>
@@ -218,9 +211,10 @@ export default function NewChallengeModal({
             required
             id='duration'
             name='duration'
+            defaultValue=''
             className='form__input-field'
           >
-            <option value='' disabled selected>
+            <option value='' disabled>
               Select the duration of the match
             </option>
             <option value='5'>5 minutes</option>
@@ -250,7 +244,7 @@ export default function NewChallengeModal({
       <div className='new__challenge-content-victory'>
         <VictoryIcon />
       </div>
-      <p className='new__challenge-content-title'>Challenge invite sent</p>
+      <p className='modal-content-title'>Challenge invite sent</p>
       <p className='new__challenge-content-info'>
         Your challenge has been sent to @ashbarklettyliveson. <br />
         You will be notified once they accept or reject.
@@ -263,28 +257,28 @@ export default function NewChallengeModal({
 
   return (
     <Modal isOpen={showModal} style={customStyles}>
-      <div className='new__challenge'>
-        <div className='new__challenge-header'>
+      <div className='modal'>
+        <div className='modal-header'>
           {index <= 3 ? (
             <>
-              <div className='new__challenge-header-placeholder'>
+              <div className='modal-header-placeholder'>
                 {index > 1 ? (
                   <button
                     onClick={handleBackButton}
-                    className='new__challenge-header-back'
+                    className='modal-header-back'
                   >
                     <LeftArrowIcon />
                   </button>
                 ) : null}
               </div>
-              <div className='new__challenge-header-stage'>{index} of 3</div>
+              <div className='modal-header-title'>{index} of 3</div>
             </>
           ) : null}
-          <button className='new__challenge-header-close' onClick={closeModal}>
+          <button className='modal-header-close' onClick={closeModal}>
             <CloseIcon />
           </button>
         </div>
-        <div className='new__challenge-content'>
+        <div className='modal-content'>
           {[firstPage, secondPage, thirdPage, fourthPage][index - 1]}
         </div>
       </div>

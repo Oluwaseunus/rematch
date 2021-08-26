@@ -80,6 +80,11 @@ interface LoginRequest extends Pick<SignupRequest, 'username' | 'password'> {
   keepMeLoggedIn: boolean;
 }
 
+interface ModalProps {
+  showModal: boolean;
+  closeModal: () => void;
+}
+
 interface PaginatedAPIResponse extends APIResponse {
   page: number;
   limit: number;
