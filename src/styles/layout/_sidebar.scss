@@ -65,22 +65,23 @@ aside {
         width: 4.7rem;
         display: flex;
         height: 2.5rem;
-        padding: 2px 8px;
         align-items: center;
         border-radius: 1.6rem;
+        justify-content: center;
         background-color: $primary-dark;
 
         &::before {
           content: '';
           width: 1.4rem;
           height: 0.9rem;
+          margin-right: 4px;
           background: url('../../assets/svgs/polygonUp.svg') no-repeat center;
+          background-size: contain;
         }
 
         p {
           color: white;
           font-weight: 700;
-          margin-left: auto;
           font-size: 1.7rem;
           line-height: 2.057rem;
         }
