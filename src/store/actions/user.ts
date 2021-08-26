@@ -13,4 +13,11 @@ export default class UserActionsCreator {
       user,
     });
   }
+
+  static unauthenticate() {
+    localStorage.removeItem('token');
+    this.dispatch({
+      type: types.UNAUTHENTICATED,
+    });
+  }
 }

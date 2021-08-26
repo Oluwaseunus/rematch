@@ -10,6 +10,7 @@ header {
   .content {
     height: 100%;
     display: flex;
+    position: relative;
     align-items: center;
     margin-right: 14rem;
   }
@@ -51,6 +52,98 @@ header {
         transform: translateY(-50%);
         background: url('../../assets/svgs/magnifyingGlass.svg') center
           no-repeat;
+      }
+    }
+
+    &-dropdown {
+      top: 10rem;
+      width: 30rem;
+      right: 25rem;
+      padding: 2.5rem;
+      border-radius: 2px;
+      position: absolute;
+      background: #ffffff;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+
+      &__profile {
+        display: flex;
+
+        &:focus {
+          outline: none;
+        }
+
+        &-image {
+          width: 4.2rem;
+          height: 4.2rem;
+          overflow: hidden;
+          border-radius: 50%;
+          margin-right: 1.5rem;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        &-details {
+          margin-bottom: 1.5rem;
+        }
+
+        &-name {
+          font-weight: 600;
+          font-size: 1.6rem;
+          line-height: 2.4rem;
+        }
+
+        &-action {
+          font-size: 1.2rem;
+          line-height: 1.8rem;
+          color: $neutral-grey;
+        }
+      }
+
+      .divider {
+        margin-bottom: 1.5rem;
+      }
+
+      &__options {
+        margin-bottom: 0.5rem;
+      }
+
+      &__option {
+        width: 100%;
+        display: flex;
+        margin: 0 auto;
+        background: none;
+        align-items: center;
+
+        &-icon {
+          width: 3rem;
+          height: 3rem;
+          margin-right: 2rem;
+          border-radius: 50%;
+          @include flexCenter;
+          background-color: $neutral-white;
+        }
+
+        &-text {
+          font-weight: 600;
+          font-size: 1.4rem;
+          line-height: 2.1rem;
+
+          &.logout {
+            color: red;
+          }
+        }
+
+        &-next {
+          margin-left: auto;
+          @include flexCenter;
+        }
+
+        &:not(:last-of-type) {
+          margin-bottom: 2rem;
+        }
       }
     }
   }
@@ -111,16 +204,21 @@ header {
 
   .profile {
     display: flex;
+    background: none;
     align-items: center;
     justify-content: space-between;
 
     .avi {
       width: 4.2rem;
       height: 4.2rem;
+      overflow: hidden;
       border-radius: 50%;
       margin-right: 1rem;
-      background: url('../../assets/images/Fikayo.png') center no-repeat;
-      background-size: contain;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .dropdown {

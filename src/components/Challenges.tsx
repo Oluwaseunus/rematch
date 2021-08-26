@@ -80,10 +80,8 @@ export default function Challenges() {
         <div className='challenge__filter'>
           <p>Showing:</p>
           <div className='select'>
-            <select name='showing' id='showing'>
-              <option value='all' selected>
-                All
-              </option>
+            <select defaultValue='all' name='showing' id='showing'>
+              <option value='all'>All</option>
             </select>
             {/* <img src="../assets/svgs/dropdown.svg" alt="Dropdown" /> */}
           </div>

@@ -10,6 +10,9 @@ export default function userReducer(
     case types.AUTHENTICATED:
       return action.user;
 
+    case types.UNAUTHENTICATED:
+      return null;
+
     default:
       return state;
   }

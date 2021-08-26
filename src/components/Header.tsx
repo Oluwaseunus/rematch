@@ -1,6 +1,11 @@
 import Modal from 'react-modal';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '../store';
+import { getFullName } from '../utils';
 import Cog from '../assets/svgs/cog.svg';
+import HeaderDropdown from './HeaderDropdown';
 import Steam from '../assets/images/steam icon.png';
 import NewChallengeModal from './NewChallengeModal';
 import { ReactComponent as Dropdown } from '../assets/svgs/dropdown.svg';
@@ -10,6 +15,10 @@ Modal.setAppElement('#root');
 
 function Header() {
   const [showModal, setShowModal] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const user = useSelector((state: RootState) => state.user!);
+
+  const fullname = getFullName(user);
 
   return (
     <>
@@ -40,10 +49,20 @@ function Header() {
 
           <button className='notification__bell'>&nbsp;</button>
 
-          <div className='profile'>
-            <div className='avi'></div>
+          <button
+            type='button'
+            className='profile'
+            onClick={() => setShowDropdown(!showDropdown)}
+          >
+            <div className='avi'>
+              <img src={user.image} alt={fullname} />
+            </div>
             <div className='dropdown'></div>
-          </div>
+          </button>
+
+          {showDropdown ? (
+            <HeaderDropdown user={user} fullname={fullname} />
+          ) : null}
         </section>
       </header>
 
