@@ -44,7 +44,7 @@ export default function InviteModal({ showModal, closeModal }: ModalProps) {
         <div className='modal-header'>
           <div className='modal-header-placeholder'>{null}</div>
           <div className='modal-header-title'>Invite</div>
-          <button className='modal-header-close'>
+          <button className='modal-header-close' onClick={closeModal}>
             <CloseIcon />
           </button>
         </div>
