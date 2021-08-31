@@ -1,10 +1,12 @@
 import Modal from 'react-modal';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import ClickAwayListener from 'react-click-away-listener';
 
 import { RootState } from '../store';
 import { getFullName } from '../utils';
 import Cog from '../assets/svgs/cog.svg';
+import Notifications from './Notifications';
 import HeaderDropdown from './HeaderDropdown';
 import Steam from '../assets/images/steam icon.png';
 import NewChallengeModal from './NewChallengeModal';
@@ -17,6 +19,7 @@ function Header() {
   const [showModal, setShowModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const user = useSelector((state: RootState) => state.user!);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   const fullname = getFullName(user);
 
@@ -47,7 +50,13 @@ function Header() {
             </div>
           </div>
 
-          <button className='notification__bell'>&nbsp;</button>
+          <button
+            type='button'
+            className='notification__bell'
+            onClick={() => setShowNotifications(!showNotifications)}
+          >
+            &nbsp;
+          </button>
 
           <button
             type='button'
@@ -60,8 +69,16 @@ function Header() {
             <div className='dropdown'></div>
           </button>
 
+          {showNotifications ? (
+            <ClickAwayListener onClickAway={() => setShowNotifications(false)}>
+              <Notifications />
+            </ClickAwayListener>
+          ) : null}
+
           {showDropdown ? (
-            <HeaderDropdown user={user} fullname={fullname} />
+            <ClickAwayListener onClickAway={() => setShowDropdown(false)}>
+              <HeaderDropdown user={user} fullname={fullname} />
+            </ClickAwayListener>
           ) : null}
         </section>
       </header>
