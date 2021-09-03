@@ -7,6 +7,7 @@ import { RootState } from '../store';
 import { getFullName } from '../utils';
 import Cog from '../assets/svgs/cog.svg';
 import Notifications from './Notifications';
+import GamesDropdown from './GamesDropdown';
 import HeaderDropdown from './HeaderDropdown';
 import Steam from '../assets/images/steam icon.png';
 import NewChallengeModal from './NewChallengeModal';
@@ -16,8 +17,10 @@ import { ReactComponent as Dropdown } from '../assets/svgs/dropdown.svg';
 Modal.setAppElement('#root');
 
 function Header() {
+  const [showGames, setShowGames] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [currentGame, setCurrentGame] = useState('FIFA 21');
   const user = useSelector((state: RootState) => state.user!);
   const [showNotifications, setShowNotifications] = useState(false);
 
@@ -39,15 +42,19 @@ function Header() {
               <img src={Steam} alt='steam' className='connect__badge-icon' />
               <p className='connect__badge-title'>New Challenge</p>
             </button>
-            <div className='connect__badge current'>
+            <button
+              type='button'
+              className='connect__badge current'
+              onClick={() => setShowGames(!showGames)}
+            >
               <img
                 src={Cog}
                 alt='Current Game'
                 className='connect__badge-icon'
               />
-              <p className='connect__badge-title'>FIFA 21</p>
+              <p className='connect__badge-title'>{currentGame}</p>
               <Dropdown className='connect__badge-dropdown' />
-            </div>
+            </button>
           </div>
 
           <button
@@ -68,6 +75,12 @@ function Header() {
             </div>
             <div className='dropdown'></div>
           </button>
+
+          {showGames ? (
+            <ClickAwayListener onClickAway={() => setShowGames(false)}>
+              <GamesDropdown setCurrentGame={setCurrentGame} />
+            </ClickAwayListener>
+          ) : null}
 
           {showNotifications ? (
             <ClickAwayListener onClickAway={() => setShowNotifications(false)}>
