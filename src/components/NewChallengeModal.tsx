@@ -2,7 +2,9 @@ import moment from 'moment';
 import 'moment/locale/en-gb';
 import Modal from 'react-modal';
 import DateTime from 'react-datetime';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import MatchService from '../api/MatchService';
 import Fikayo from '../assets/images/Fikayo.png';
 import { ReactComponent as CloseIcon } from '../assets/svgs/close.svg';
 import { ReactComponent as VictoryIcon } from '../assets/svgs/victory.svg';
@@ -15,10 +17,19 @@ export default function NewChallengeModal({
   const yesterday = moment().subtract(1, 'day');
 
   const [index, setIndex] = useState(1);
+  const [duration, setDuration] = useState('');
   const [opponent, setOpponent] = useState('');
   const [selected, setSelected] = useState('');
+  const [stake, setStake] = useState<number>(100);
   const [opponentType, setOpponentType] = useState('');
-  const [date, setDate] = useState<string | moment.Moment>(moment());
+  const [date, setDate] = useState<string | moment.Moment>('');
+
+  useEffect(() => {
+    const date = new Date();
+    const currMinute = date.getMinutes();
+    const newDate = date.setMinutes(currMinute + 5, 0, 0);
+    setDate(moment(newDate));
+  }, []);
 
   const customStyles: { content: React.CSSProperties } = {
     content: {
@@ -34,11 +45,21 @@ export default function NewChallengeModal({
     },
   };
 
-  function createChallenge(e: React.FormEvent<HTMLFormElement>) {
+  async function createChallenge(e: React.FormEvent<HTMLFormElement>) {
+    console.log('creating');
     e.preventDefault();
 
     if (moment(date).isAfter(moment())) {
-      setIndex(index + 1);
+      if (opponentType === 'random') {
+        const challenge = await MatchService.challengeUser({
+          stake,
+          duration: duration + 'mins',
+          game: '610a7b9fcf639d7e1750642f',
+          date: moment(date).toISOString(),
+        });
+        console.log({ challenge });
+        setIndex(index + 1);
+      }
     }
   }
 
@@ -172,7 +193,9 @@ export default function NewChallengeModal({
             id='points'
             type='number'
             name='points'
+            value={stake}
             className='form__input-field'
+            onChange={e => setStake(+e.target.value)}
           />
         </div>
         <div className='form__horizontal-group'>
@@ -211,16 +234,22 @@ export default function NewChallengeModal({
             required
             id='duration'
             name='duration'
-            defaultValue=''
+            value={duration}
             className='form__input-field'
+            onChange={e => setDuration(e.target.value)}
           >
             <option value='' disabled>
               Select the duration of the match
             </option>
             <option value='5'>5 minutes</option>
+            <option value='10'>10 minutes</option>
+            <option value='15'>15 minutes</option>
+            <option value='20'>20 minutes</option>
+            <option value='25'>25 minutes</option>
+            <option value='30'>30 minutes</option>
           </select>
         </div>
-        <div className='form__input-group'>
+        {/* <div className='form__input-group'>
           <label htmlFor='points' className='form__input-label'>
             <span>FUT ID</span>
           </label>
@@ -231,7 +260,7 @@ export default function NewChallengeModal({
             name='fut-id'
             className='form__input-field'
           />
-        </div>
+        </div> */}
         <button type='submit' className='primary create-challenge'>
           Create Challenge
         </button>
@@ -246,7 +275,8 @@ export default function NewChallengeModal({
       </div>
       <p className='modal-content-title'>Challenge invite sent</p>
       <p className='new__challenge-content-info'>
-        Your challenge has been sent to @ashbarklettyliveson. <br />
+        Your challenge has been sent
+        {opponentType === 'random' ? '.' : 'to @ashbarklettyliveson.'} <br />
         You will be notified once they accept or reject.
       </p>
       <button className='primary' onClick={closeModal}>

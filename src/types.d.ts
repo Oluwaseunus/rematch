@@ -27,6 +27,26 @@ interface Challenge {
   gameTitle: string;
 }
 
+interface ChallengeUserRequest {
+  date: string;
+  game: string;
+  stake: number;
+  user2?: string;
+  duration: string;
+}
+
+interface ChallengeUserResponse {
+  _id: string;
+  date: string;
+  game: string;
+  user2: string;
+  stake: number;
+  user1: string;
+  status: string;
+  created: string;
+  duration: string;
+}
+
 interface CommunityMember {
   _id: string;
   name: string;
