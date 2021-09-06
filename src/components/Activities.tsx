@@ -79,7 +79,7 @@ export default function Activities({ user }: ActivitiesProps) {
       ))}
     </ul>
   ) : (
-    <div className='activity__empty'>
+    <div className='ghost__empty'>
       <GhostIcon />
       <p>Your activities will appear here.</p>
     </div>

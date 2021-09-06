@@ -1,6 +1,6 @@
-import React from 'react';
-import Profile from './Profile';
 import { useQuery } from 'react-query';
+
+import Profile from './Profile';
 import UserService from '../api/UserService';
 import { ReactComponent as EmptyFriendsIcon } from '../assets/svgs/emptyFriends.svg';
 
