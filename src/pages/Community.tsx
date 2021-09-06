@@ -2,20 +2,18 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 import { RootState } from '../store';
-import { database } from '../firebase';
 import Profile from '../components/Profile';
 import Timi from '../assets/images/Timi.png';
 import Fikayo from '../assets/images/Fikayo.png';
 import Fisayo from '../assets/images/Fisayo.png';
+import Activities from '../components/Activities';
 import InviteModal from '../components/InviteModal';
-import SingleActivity from '../components/SingleActivity';
 import FriendRequests from '../components/FriendRequests';
 import CommunityFriends from '../components/CommunityFriends';
 import { ReactComponent as UserPlus } from '../assets/svgs/user-plus.svg';
 
 export default function Community() {
   const user = useSelector((state: RootState) => state.user!);
-  const [activities, setActivities] = useState<Activity[]>([]);
   const [showInviteModal, setShowInviteModal] = useState(false);
   const [onlineFriends, setOnlineFriends] = useState<User[]>([]);
 
@@ -50,16 +48,6 @@ export default function Community() {
     }
     fetchFriends();
   }, []);
-
-  useEffect(() => {
-    const activitiesRef = database.ref(`activity/${user?._id}`);
-    activitiesRef.on('value', snapshot => {
-      const data: Record<string, Activity> = snapshot.val();
-      const notifications = Object.values(data);
-      const unread = notifications.filter(({ status }) => status === 'unread');
-      setActivities(unread);
-    });
-  }, [user]);
 
   return (
     <section className='page community'>
@@ -96,11 +84,7 @@ export default function Community() {
         </div>
         <div className='community__activity'>
           <p className='title'>Activities</p>
-          <ul className='activity-list'>
-            {activities.map(activity => (
-              <SingleActivity key={activity.timestamp} {...activity} />
-            ))}
-          </ul>
+          <Activities user={user} />
         </div>
       </div>
 
