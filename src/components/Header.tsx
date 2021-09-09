@@ -8,9 +8,9 @@ import { getFullName } from '../utils';
 import Cog from '../assets/svgs/cog.svg';
 import Notifications from './Notifications';
 import GamesDropdown from './GamesDropdown';
+import NewEventModal from './NewEventModal';
 import HeaderDropdown from './HeaderDropdown';
 import Steam from '../assets/images/steam icon.png';
-import NewChallengeModal from './NewChallengeModal';
 import { ReactComponent as Dropdown } from '../assets/svgs/dropdown.svg';
 
 // required once for react-modal
@@ -18,7 +18,7 @@ Modal.setAppElement('#root');
 
 function Header() {
   const [showGames, setShowGames] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
   const [currentGame, setCurrentGame] = useState('FIFA 21');
   const user = useSelector((state: RootState) => state.user!);
@@ -40,7 +40,7 @@ function Header() {
               onClick={() => setShowModal(!showModal)}
             >
               <img src={Steam} alt='steam' className='connect__badge-icon' />
-              <p className='connect__badge-title'>New Challenge</p>
+              <p className='connect__badge-title'>New Event</p>
             </button>
             <button
               type='button'
@@ -99,7 +99,7 @@ function Header() {
       {/* rendering this way prevents us from having to reset the modal state
         by completely removing the modal when it's not needed. */}
       {showModal ? (
-        <NewChallengeModal showModal closeModal={() => setShowModal(false)} />
+        <NewEventModal showModal closeModal={() => setShowModal(false)} />
       ) : null}
     </>
   );

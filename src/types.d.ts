@@ -74,6 +74,10 @@ interface HandleChange {
   (e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
+interface HandleSubmit {
+  (e: React.FormEvent<HTMLFormElement>): void;
+}
+
 interface LastPlayed {
   image: string;
   title: string;
