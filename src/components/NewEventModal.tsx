@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import HeadToHeadModal from './HeadToHeadModal';
 import TournamentModal from './TournamentModal';
 import { ReactComponent as CloseIcon } from '../assets/svgs/close.svg';
+import { ReactComponent as VictoryIcon } from '../assets/svgs/victory.svg';
 import { ReactComponent as HeadToHeadIcon } from '../assets/svgs/headToHead.svg';
 import { ReactComponent as TournamentIcon } from '../assets/svgs/tournament.svg';
 
@@ -131,6 +132,23 @@ export default function NewEventModal({ closeModal }: ModalProps) {
               />
             ) : null
           ) : null}
+
+          {page === 3 && (
+            <div className='new__challenge-created'>
+              <div className='new__challenge-content-victory'>
+                <VictoryIcon />
+              </div>
+              <p className='modal-content-title'>Event Created</p>
+              <p className='new__challenge-content-info'>
+                Your event has been created.
+                <br />
+                You will be notified on updates to it.
+              </p>
+              <button className='primary' onClick={closeModal}>
+                Okay, great
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </ReactModal>

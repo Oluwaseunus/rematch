@@ -137,6 +137,7 @@ export default function HeadToHeadModal({
               id='opponent'
               name='opponent'
               value={opponent}
+              autoComplete='off'
               onChange={changeHandler}
               className='form__input-field'
             />
