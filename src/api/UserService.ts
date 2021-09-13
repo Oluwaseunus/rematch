@@ -114,6 +114,20 @@ export default class UserService {
     return response.data;
   }
 
+  static async searchUser(username: string) {
+    try {
+      const {
+        data: { data },
+      } = await this.instance.get<APIResponse<User[]>>(
+        `/search/user?params=${username}`
+      );
+      return data;
+    } catch (err) {
+      catchWrapper(err);
+      return [];
+    }
+  }
+
   static async signup(body: SignupRequest): Promise<AuthResponse> {
     const response = await this.instance.post<APIResponse<UserWithToken>>(
       '/users',

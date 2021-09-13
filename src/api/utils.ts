@@ -1,5 +1,5 @@
-export function catchWrapper(err: Error) {
-  if (err.message === 'jwt expired') {
+export function catchWrapper(err: unknown) {
+  if (err instanceof Error && err.message === 'jwt expired') {
     localStorage.removeItem('token');
     window.location.href =
       window.location.origin + '/auth?redirectTo=window.location.pathname';

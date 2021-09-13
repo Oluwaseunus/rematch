@@ -1,0 +1,228 @@
+.form {
+  width: 64rem;
+  height: 70.5rem;
+  border-radius: 8px;
+  background: white;
+  border: 1px solid $border-whisper;
+  padding: 5.2rem;
+  position: absolute;
+  bottom: 0;
+  color: $text-purple;
+  font-family: 'Raleway', Inter, sans-serif;
+
+  &__horizontal {
+    &-group {
+      display: flex;
+
+      .form__input-group:not(:last-of-type) {
+        margin-right: 2.4rem;
+      }
+    }
+  }
+
+  &__header {
+    margin-bottom: 3.2rem;
+
+    &-title {
+      font-weight: 700;
+      font-size: 3.2rem;
+    }
+
+    &-text {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+    }
+  }
+
+  &__component.login &__header-text {
+    margin-bottom: -2rem;
+  }
+
+  &__input {
+    &-group {
+      flex: 1;
+      display: flex;
+      font-weight: 300;
+      position: relative;
+      margin-bottom: 2.4rem;
+      flex-direction: column;
+
+      &.row {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      &.date .rdt {
+        &::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          right: 1rem;
+          width: 2.4rem;
+          height: 2.4rem;
+          transform: translateY(-50%);
+          background: url('../../assets/svgs/calendar.svg') no-repeat center;
+        }
+      }
+
+      &.switch-group {
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .switch {
+          &-label {
+            p {
+              font-weight: 500;
+              font-size: 1.6rem;
+              line-height: 3.2rem;
+              color: $text-purple;
+            }
+
+            span {
+              font-weight: 400;
+              font-size: 1.4rem;
+              color: $text-grey;
+              line-height: 2.1rem;
+            }
+          }
+
+          &-wrapper {
+            width: 4.8rem;
+            height: 2.6rem;
+            position: relative;
+            display: inline-block;
+          }
+
+          &-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            cursor: pointer;
+            transition: 0.4s;
+            border-radius: 4rem;
+            background-color: #ccc;
+
+            &::before {
+              position: absolute;
+              top: 50%;
+              left: 4px;
+              content: '';
+              bottom: 4px;
+              width: 2.1rem;
+              height: 2.1rem;
+              transition: 0.4s;
+              border-radius: 50%;
+              background-color: white;
+              transform: translate(0, -50%);
+            }
+
+            &.checked {
+              background-color: $primary-color;
+
+              &::before {
+                transform: translate(1.9rem, -50%);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &-label {
+      display: flex;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      margin-bottom: 0.8rem;
+      font-family: Raleway, Inter, sans-serif;
+
+      button {
+        margin-left: auto;
+      }
+    }
+
+    &-group.row &-label {
+      margin-bottom: 0;
+    }
+
+    &-field {
+      height: 5rem;
+      padding: 1.3rem;
+      font-size: 1.6rem;
+      border-radius: 5px;
+      line-height: 2.4rem;
+      font-family: inherit;
+      border: 1px solid $border-whisper;
+
+      &:focus {
+        outline: none;
+      }
+
+      &[type='checkbox'] {
+        margin-right: 13px;
+      }
+
+      &:not(&[type='checkbox']) {
+        width: 100%;
+      }
+
+      // @at-root {
+      // select#{&} {
+      select {
+        &:invalid {
+          color: $text-grey;
+        }
+
+        [disabled] {
+          color: $text-grey;
+        }
+      }
+      // }
+
+      &::placeholder {
+        font-family: inherit;
+      }
+    }
+
+    &-textarea {
+      resize: none;
+      height: 12.6rem;
+      font-size: 1.6rem;
+      border-radius: 4px;
+      padding: 1rem;
+      color: $text-purple;
+      font-family: inherit;
+      border: 1px solid $btn-stroke;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &__nav {
+    &-button {
+      border: none;
+      background: none;
+      font-weight: 600;
+      line-height: 2.4rem;
+      color: $primary-color;
+      text-decoration: underline;
+      font-family: Inter, sans-serif;
+    }
+  }
+
+  button.primary {
+    width: 100%;
+    height: 5.6rem;
+    margin-bottom: 2.4rem;
+  }
+
+  &__remarks {
+    font-size: 1.6rem;
+    text-align: center;
+    font-family: Inter, sans-serif;
+  }
+}

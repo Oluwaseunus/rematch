@@ -18,7 +18,7 @@ Modal.setAppElement('#root');
 
 function Header() {
   const [showGames, setShowGames] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [currentGame, setCurrentGame] = useState('FIFA 21');
   const user = useSelector((state: RootState) => state.user!);
