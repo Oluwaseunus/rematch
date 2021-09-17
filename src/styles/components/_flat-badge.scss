@@ -1,0 +1,13 @@
+.flat-badge {
+  height: 2.4rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  width: max-content;
+  line-height: 1.8rem;
+  @include flexCenter;
+  color: $primary-dark;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  background-color: rgba(101, 36, 148, 0.2);
+}

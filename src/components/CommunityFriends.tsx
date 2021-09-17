@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 
 import Profile from './Profile';
 import UserService from '../api/UserService';
+import UserInfoDisplay from './UserInfoDisplay';
 import { ReactComponent as EmptyFriendsIcon } from '../assets/svgs/emptyFriends.svg';
 
 interface CommunityFriendsProps {
@@ -9,11 +11,11 @@ interface CommunityFriendsProps {
 }
 
 export default function CommunityFriends({ user }: CommunityFriendsProps) {
+  const [userToShow, setUserToShow] = useState<User | undefined>(undefined);
   const { isLoading, isError, data } = useQuery<User[]>(
     'communityFriends',
     async () => {
-      const friendsList = await UserService.fetchFriends();
-      return friendsList.map(
+      return (await UserService.fetchFriends()).map(
         friends => friends.filter(({ _id }) => _id !== user?._id)[0]
       );
     }
@@ -43,13 +45,24 @@ export default function CommunityFriends({ user }: CommunityFriendsProps) {
   return (
     <ul className='community__friends-list'>
       {data.map(friend => (
-        <li className='community__friends-item' key={friend._id}>
+        <li
+          key={friend._id}
+          className='community__friends-item'
+          onClick={() => setUserToShow(friend)}
+        >
           <Profile user={friend} />
           <div className='community__friends-item-actions'>
             <button className='primary'>Challenge</button>
           </div>
         </li>
       ))}
+
+      {userToShow && (
+        <UserInfoDisplay
+          user={userToShow}
+          closeModal={() => setUserToShow(undefined)}
+        />
+      )}
     </ul>
   );
 }

@@ -1,6 +1,7 @@
 import ReactModal from 'react-modal';
 import React, { useState } from 'react';
 
+import { modalStyles } from '../constants';
 import HeadToHeadModal from './HeadToHeadModal';
 import TournamentModal from './TournamentModal';
 import { ReactComponent as CloseIcon } from '../assets/svgs/close.svg';
@@ -14,25 +15,6 @@ interface ChildComponentProps {
   goToNextPage: () => void;
   setEventType: (eventType: EventType) => void;
 }
-
-const customStyles: Record<'overlay' | 'content', React.CSSProperties> = {
-  overlay: {
-    zIndex: 1,
-  },
-  content: {
-    zIndex: 2,
-    top: '50%',
-    padding: 0,
-    left: '50%',
-    width: '83.3rem',
-    height: 'fit-content',
-    minHeight: '57.8rem',
-    borderRadius: '2.4rem',
-    backgroundColor: '#fff',
-    transform: 'translate(-50%, -50%)',
-    transition: 'all 0.3s ease-in-out',
-  },
-};
 
 function ChooseEventType({ setEventType, goToNextPage }: ChildComponentProps) {
   function handleStateUpdate(eventType: EventType) {
@@ -100,7 +82,7 @@ export default function NewEventModal({ closeModal }: ModalProps) {
   }
 
   return (
-    <ReactModal isOpen style={customStyles}>
+    <ReactModal isOpen style={modalStyles}>
       <div className='modal'>
         <div className='modal-header'>
           <button
